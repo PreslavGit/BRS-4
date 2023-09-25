@@ -15,7 +15,6 @@ const router = createBrowserRouter([
 	{
 		path: BASE_PATH + '/login',
 		element: <LoginForm />,
-		errorElement: <ErrorPage />
 	},
 ]);
 
