@@ -7,7 +7,7 @@ export function LoginForm() {
 
     async function handleLogin(e: Event | undefined) {
         e?.preventDefault()
-        HttpAdapter.POST('/login', loginForm)
+        HttpAdapter.POST('/login/', loginForm)
     }
 
     return (

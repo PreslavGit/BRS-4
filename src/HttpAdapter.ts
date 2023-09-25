@@ -1,7 +1,7 @@
 import { showSnackbar } from "./Snackbar"
 
 export class HttpAdapter {
-    static API_URL = 'http://unssinsurance.atwebpages.com/'
+    static API_URL = 'http://p48-preview.runhosting.com/unssinsurance.atwebpages.com'
 
     public static GET<T>(path: string) {
         return new Promise<T>((resolve, reject) => {
