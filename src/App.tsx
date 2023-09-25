@@ -5,7 +5,9 @@ function App() {
   
 	async function handleLogin(e: Event | undefined) {
 		e?.preventDefault()
-		HttpAdapter.POST('/login/login.php', { username: 'username', password: 'password' })
+		const username = document.getElementById('username').value;
+  		const password = document.getElementById('password').value;
+		HttpAdapter.POST('/login', { username: username, password: password})
 	}
 
 	return (
