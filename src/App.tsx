@@ -8,7 +8,9 @@ function App() {
 
 	async function handleLogin(e: Event | undefined) {
 		e?.preventDefault()
-		HttpAdapter.POST('/login', loginForm)
+		const username = (document.getElementById('username') as HTMLInputElement)?.value;
+  		const password = (document.getElementById('password') as HTMLInputElement)?.value;
+		HttpAdapter.POST('/login/', { username: username, password: password})
 	}
 
 	return (
