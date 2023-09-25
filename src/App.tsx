@@ -1,22 +1,21 @@
+import { useState } from 'react';
 import './App.css'
 import { HttpAdapter } from './HttpAdapter'
+import { Input } from './Components/Input';
 
 function App() {
-  
+	const [loginForm, setLoginForm] = useState({ username: '', password: '' })
+
 	async function handleLogin(e: Event | undefined) {
 		e?.preventDefault()
-		const username = document.getElementById('username').value;
-  		const password = document.getElementById('password').value;
-		HttpAdapter.POST('/login', { username: username, password: password})
+		HttpAdapter.POST('/login', loginForm)
 	}
 
 	return (
 		<>
 			<form className='flex-col flex gap-2 m-auto p-4 border-slate-400 border-2 rounded-xl'>
-				<label htmlFor="username">Име</label>
-				<input type="text" name="username" id="username" />
-				<label htmlFor="password">Парола</label>
-				<input type="text" name="password" id="password" />
+				<Input name='username' setForm={setLoginForm} form={loginForm} label='Име'/>
+				<Input name='password' setForm={setLoginForm} form={loginForm} label='Парола' type='password'/>
 				<button type="submit" className='bg-black rounded-lg mt-6' onClick={() => handleLogin(event)}>Login</button>
 			</form>
 		</>
