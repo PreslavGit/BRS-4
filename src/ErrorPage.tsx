@@ -5,13 +5,10 @@ export default function ErrorPage() {
     console.error(error);
   
     return (
-      <div id="error-page">
-        <h1>Oops!</h1>
-        <p>Sorry, an unexpected error has occurred.</p>
-        <p>
-          <i>{error.statusText || error.message}</i>
-        </p>
-        <Link to={`BRS-4/login`}>Login</Link>
+      <div id="error-page" className="w-screen h-screen bg-slate-600 text-white flex flex-col text-3xl items-center justify-center">
+        <h1 className="text-5xl pb-12">Oops!</h1>
+        <p className="pb-12">This page does not exist</p>
+        <Link to={`/`} className="underline text-blue-400">Go to home screen</Link>
       </div>
     );
   }

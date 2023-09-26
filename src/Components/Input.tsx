@@ -15,7 +15,7 @@ export function Input({ name, label, form, setForm, classNames, type = 'text' }:
                 type={type} value={form[name]} 
                 onChange={(e) => setForm({...form, [name]: e.target.value })} 
                 name={name} id={name} 
-                className={`p-2 ${classNames}`}/>
+                className={`p-2 text-black ${classNames}`}/>
         </>
     )
 }
