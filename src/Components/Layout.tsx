@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from "react-router-dom";
 
 export function Layout() {
+    //redirect if not logged
     return (
         <div className="flex">
             <div className="h-screen w-[140px] bg-slate-700 flex flex-col justify-between text-white gap-4">

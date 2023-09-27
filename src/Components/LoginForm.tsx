@@ -1,7 +1,8 @@
 import { useState } from "react"
-import { HttpAdapter } from "../HttpAdapter"
 import { Input } from "./Input"
 import { useNavigate } from "react-router-dom"
+import { showSnackbar } from "../Snackbar"
+import { API_URL } from "../main"
 
 export function LoginForm() {
     const [loginForm, setLoginForm] = useState({ username: '', password: '' })
@@ -9,7 +10,18 @@ export function LoginForm() {
 
     async function handleLogin(e: Event | undefined) {
         e?.preventDefault()
-        await HttpAdapter.POST('/login/', loginForm).then(() => navigator('/'))
+        await fetch(API_URL + '/login/login.php', { method: 'POST', body: JSON.stringify(loginForm)})
+            .then(async res => {
+                if(!res.ok){
+                    throw new Error()
+                }
+                return await res.json()
+            })
+            .then(() => {
+                showSnackbar('Login successful')
+                navigator('/')
+            })
+            .catch(() => showSnackbar('Error logging in', 'Error'))
     }
 
     return (

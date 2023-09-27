@@ -7,6 +7,9 @@ import { LoginForm } from './Components/LoginForm.tsx';
 import { Layout } from './Components/Layout.tsx';
 import { Policies } from './Components/Tabs/Policies.tsx';
 import { Clients } from './Components/Tabs/Clients.tsx';
+import { SWRConfig } from 'swr';
+
+export const API_URL = 'http://p48-preview.runhosting.com/unssinsurance.atwebpages.com'
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -15,8 +18,8 @@ const router = createBrowserRouter(
 			<Route path='login' element={<LoginForm />} />
 
 			<Route path='/' element={<Layout />}>
-				<Route path='policies' element={<Policies />}/>
-				<Route path='clients' element={<Clients />}/>
+				<Route path='policies' element={<Policies />} />
+				<Route path='clients' element={<Clients />} />
 			</Route>
 		</Route>
 	)
@@ -24,6 +27,8 @@ const router = createBrowserRouter(
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<SWRConfig value={{}}>
+			<RouterProvider router={router} />
+		</SWRConfig>
 	</React.StrictMode>,
 )

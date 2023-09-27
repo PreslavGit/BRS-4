@@ -1,9 +1,6 @@
-import { Link, useRouteError } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function ErrorPage() {
-    const error: any = useRouteError();
-    console.error(error);
-  
     return (
       <div id="error-page" className="w-screen h-screen bg-slate-600 text-white flex flex-col text-3xl items-center justify-center">
         <h1 className="text-5xl pb-12">Oops!</h1>
