@@ -1,7 +1,11 @@
 import { useState } from "react"
-import { Input } from "./Input"
+import { FormInput } from "./Input"
 import { useNavigate } from "react-router-dom"
 import { POST } from "../FetchWrapper"
+import Stack from "@mui/joy/Stack/Stack"
+import Typography from "@mui/joy/Typography/Typography"
+import Card from "@mui/joy/Card/Card"
+import Button from "@mui/joy/Button/Button"
 
 export function LoginForm() {
     const [loginForm, setLoginForm] = useState({ username: '', password: '' })
@@ -13,12 +17,17 @@ export function LoginForm() {
     }
 
     return (
-        <div className="h-screen w-screen bg-slate-800 text-white pt-12">
-            <form className='flex-col flex gap-2 m-auto p-4 border-slate-400 border-2 rounded-xl items-center w-[300px]'>
-                <Input name='username' setForm={setLoginForm} form={loginForm} label='Име' />
-                <Input name='password' setForm={setLoginForm} form={loginForm} label='Парола' type='password' />
-                <button type="submit" className='bg-slate-900 px-4 py-2 rounded-lg mt-6' onClick={() => handleLogin(event)}>Login</button>
-            </form>
+        <div className="loginContainer h-screen pt-[10vh]">
+            <Card variant="outlined" sx={{ maxWidth: 400, margin: 'auto' }}>
+                <form>
+                    <Stack spacing={4} sx={{ width: '60%', margin: 'auto' }} alignItems={'center'}>
+                        <Typography level="h1" textAlign={'center'}>Влезте в профила си</Typography>
+                        <FormInput name='username' setForm={setLoginForm} form={loginForm} label='Име' />
+                        <FormInput name='password' setForm={setLoginForm} form={loginForm} label='Парола' type='password' />
+                        <Button onClick={() => handleLogin(event)} sx={{ width: '45%' }}>Влизане</Button>
+                    </Stack>
+                </form>
+            </Card>
         </div>
     )
 }
