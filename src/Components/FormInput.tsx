@@ -1,6 +1,8 @@
 import { Input, styled } from "@mui/joy"
 import React from "react"
 
+export type FormProps = Omit<props, 'form' | 'setForm' | 'type'>
+
 type props = {
     name: string
     label: string
@@ -82,9 +84,7 @@ export function FormInput({ name, label, form, setForm, type = 'text', placehold
                 slotProps={{ input: { placeholder: placeholder, type: type, value: form[name], name: label,
                     onChange: (e) => setForm({...form, [name]: e.target.value })} 
                 }}
-                sx={{
-                    '--Input-minHeight': '56px',
-                }}
+                sx={{ '--Input-minHeight': '56px' }}
             />
         </>
     )

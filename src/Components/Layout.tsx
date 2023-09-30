@@ -19,6 +19,11 @@ export function Layout() {
                 </div>
                 <div className="flex flex-col justify-between h-[80vh] flex-auto">
                     <List component="nav" onClick={() => setDrawerOpen(false)} sx={{ paddingTop: '5vh' }} size="lg">
+                        <NavLink to={`companies`}>
+                            <ListItemButton sx={{ display: 'flex', justifyContent: 'center' }}>
+                                Компании
+                            </ListItemButton>
+                        </NavLink>
                         <NavLink to={`clients`}>
                             <ListItemButton sx={{ display: 'flex', justifyContent: 'center' }}>
                                 Клиенти

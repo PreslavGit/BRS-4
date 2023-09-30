@@ -7,6 +7,7 @@ import { LoginForm } from './Components/LoginForm.tsx';
 import { Layout } from './Components/Layout.tsx';
 import { Policies } from './Components/Tabs/Policies.tsx';
 import { Clients } from './Components/Tabs/Clients.tsx';
+import { Companies } from './Components/Tabs/Companies.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -15,6 +16,7 @@ const router = createBrowserRouter(
 			<Route path='login' element={<LoginForm />} />
 
 			<Route path='/' element={<Layout />}>
+				<Route path='companies' element={<Companies />} />
 				<Route path='policies' element={<Policies />} />
 				<Route path='clients' element={<Clients />} />
 			</Route>

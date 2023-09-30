@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FormInput } from "./Input"
+import { FormInput } from "./FormInput"
 import { useNavigate } from "react-router-dom"
 import { POST } from "../FetchWrapper"
 import Stack from "@mui/joy/Stack/Stack"
