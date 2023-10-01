@@ -8,7 +8,7 @@ function handleError(e: Error) {
 }
 
 export async function GET<T>(url: string, redir?: () => void) {
-    return fetch(API_URL + url, { credentials: 'same-origin' })
+    return fetch(API_URL + url, { credentials: 'include' })
         .then(async res => {
             if (!res.ok) {
                 throw new Error()
@@ -27,7 +27,7 @@ export async function POST<T>(url: string, data: any, redir?: () => void) {
     return fetch(API_URL + url, {
         method: 'POST',
         body: JSON.stringify(data),
-        credentials: 'same-origin'
+        credentials: 'include'
     })
         .then(async res => {
             if (!res.ok) {

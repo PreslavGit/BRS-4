@@ -22,7 +22,7 @@ export function DataTable<T>({ headers, data, tableName }: props<T>) {
                 <Table variant="outlined" hoverRow stickyHeader stripe={'odd'}>
                     <thead>
                         <tr className="h-[30px]">
-                            <th className="w-[50px]"></th>
+                            <th className="w-[50px]" key={'actionHeader'}></th>
                             {Object.keys(headers).map(h => {
                                 const key = h as keyof T;
                                 return <th key={headers[key]} className="w-[150px]">{headers[key]}</th>
@@ -30,9 +30,9 @@ export function DataTable<T>({ headers, data, tableName }: props<T>) {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map(d => {
-                            return <tr>
-                                <td>
+                        {data.map((d, i) => {
+                            return <tr key={i}>
+                                <td key={i}>
                                     <Dropdown>
                                         <MenuButton slots={{ root: MoreHoriz }}>
                                         </MenuButton>
