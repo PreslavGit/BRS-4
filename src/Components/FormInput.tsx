@@ -78,7 +78,6 @@ const InnerInput = React.forwardRef<
 
 export function FormInput({ name, label, form, setForm, type = 'text', placeholder = '' }: props) {
     return (
-        <>
             <Input
                 slots={{ input: InnerInput}}
                 slotProps={{ input: { placeholder: placeholder, type: type, value: form[name], name: label,
@@ -86,6 +85,5 @@ export function FormInput({ name, label, form, setForm, type = 'text', placehold
                 }}
                 sx={{ '--Input-minHeight': '56px' }}
             />
-        </>
     )
 }
