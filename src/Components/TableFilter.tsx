@@ -1,7 +1,7 @@
 import { Button, Card, Divider, Stack, Typography } from "@mui/joy"
 import { FormInput, FormProps } from "./FormInput"
 import { Search } from "@mui/icons-material"
-import { GET, POST } from "../FetchWrapper"
+import { GET } from "../FetchWrapper"
 import { appendQueryParams } from "../helpers"
 
 type props = {
@@ -26,7 +26,7 @@ export function TableFilter({ formInputs, form, setForm, url }: props) {
 
     return (
         <Card sx={{ width: '280px', height: '60vh', padding: '10px', margin: 'auto' }} color="primary">
-            <Typography level="h4" textAlign='center'>Filters</Typography>
+            <Typography level="h4" textAlign='center'>Филтри</Typography>
             <Divider />
             <div className="overflow-y-scroll h-full flex flex-col">
                 <Stack sx={{ height: '100%', maxWidth: '200px', margin: 'auto', marginTop: '10px' }} spacing={2}>
@@ -36,8 +36,8 @@ export function TableFilter({ formInputs, form, setForm, url }: props) {
                 </Stack>
             </div>
             <div className="flex justify-center gap-2 mb-4">
-                <Button variant="outlined" color="neutral" onClick={clearForm}>Clear</Button>
-                <Button variant="solid" color="primary" onClick={getFiltered}>Filter<Search sx={{ marginLeft: '6px' }} /></Button>
+                <Button variant="outlined" color="neutral" onClick={clearForm}>Изчисти</Button>
+                <Button variant="solid" color="primary" onClick={getFiltered}>Филтрирай<Search sx={{ marginLeft: '6px' }} /></Button>
             </div>
         </Card>
     )

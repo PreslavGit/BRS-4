@@ -7,7 +7,7 @@ import { LoginForm } from './Components/LoginForm.tsx';
 import { Layout } from './Components/Layout.tsx';
 import { Policies } from './Components/Tabs/Policies.tsx';
 import { Clients } from './Components/Tabs/Clients.tsx';
-import { Companies } from './Components/Tabs/Companies.tsx';
+import { Companies } from './Components/Tabs/Companies/Companies.tsx';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
