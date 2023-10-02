@@ -6,25 +6,25 @@ export class CompanyFilter{
 }
 
 export class Company{
-    id!: number
-    name!: string
-    bulstat!: string
-    address?: string
-    contact?: string
-    telephone?: string
+    INS_COMPANY_ID!: number
+    INS_COMPANY_NAME!: string
+    INS_COMPANY_BULSTAT!: string
+    INS_COMPANY_ADDR?: string
+    INS_COMPANY_CONTACT?: string
+    INS_COMPANY_TEL?: string
 }
 
 export const companiesMock: Company[] = [
-    { id: 1, bulstat: 'company_bulstat', name: 'COMPANY_NAME', address: 'company_name', contact: 'mail@mail.com', telephone: '072349243' },
-    { id: 2, bulstat: 'company_bulstat2', name: 'COMPANY_NAME2' },
-    { id: 3, bulstat: 'company_bulstat3', name: 'COMPANY_NAME3' },
-    { id: 1, bulstat: 'company_bulstat', name: 'COMPANY_NAME', address: 'company_name', contact: 'mail@mail.com', telephone: '072349243' },
-    { id: 2, bulstat: 'company_bulstat2', name: 'COMPANY_NAME2' },
-    { id: 3, bulstat: 'company_bulstat3', name: 'COMPANY_NAME3' },
-    { id: 1, bulstat: 'company_bulstat', name: 'COMPANY_NAME', address: 'company_name', contact: 'mail@mail.com', telephone: '072349243' },
-    { id: 2, bulstat: 'company_bulstat2', name: 'COMPANY_NAME2' },
-    { id: 3, bulstat: 'company_bulstat3', name: 'COMPANY_NAME3' },
-    { id: 1, bulstat: 'company_bulstat', name: 'COMPANY_NAME', address: 'company_name', contact: 'mail@mail.com', telephone: '072349243' },
-    { id: 2, bulstat: 'company_bulstat2', name: 'COMPANY_NAME2' },
-    { id: 3, bulstat: 'company_bulstat3', name: 'COMPANY_NAME3' },
+    { INS_COMPANY_ID: 1, INS_COMPANY_BULSTAT: 'company_bulstat', INS_COMPANY_NAME: 'COMPANY_NAME', INS_COMPANY_ADDR: 'company_name', INS_COMPANY_CONTACT: 'mail@mail.com', INS_COMPANY_TEL: '072349243' },
+    { INS_COMPANY_ID: 2, INS_COMPANY_BULSTAT: 'company_bulstat2', INS_COMPANY_NAME: 'COMPANY_NAME2' },
+    { INS_COMPANY_ID: 3, INS_COMPANY_BULSTAT: 'company_bulstat3', INS_COMPANY_NAME: 'COMPANY_NAME3' },
+    { INS_COMPANY_ID: 1, INS_COMPANY_BULSTAT: 'company_bulstat', INS_COMPANY_NAME: 'COMPANY_NAME', INS_COMPANY_ADDR: 'company_name', INS_COMPANY_CONTACT: 'mail@mail.com', INS_COMPANY_TEL: '072349243' },
+    { INS_COMPANY_ID: 2, INS_COMPANY_BULSTAT: 'company_bulstat2', INS_COMPANY_NAME: 'COMPANY_NAME2' },
+    { INS_COMPANY_ID: 3, INS_COMPANY_BULSTAT: 'company_bulstat3', INS_COMPANY_NAME: 'COMPANY_NAME3' },
+    { INS_COMPANY_ID: 1, INS_COMPANY_BULSTAT: 'company_bulstat', INS_COMPANY_NAME: 'COMPANY_NAME', INS_COMPANY_ADDR: 'company_name', INS_COMPANY_CONTACT: 'mail@mail.com', INS_COMPANY_TEL: '072349243' },
+    { INS_COMPANY_ID: 2, INS_COMPANY_BULSTAT: 'company_bulstat2', INS_COMPANY_NAME: 'COMPANY_NAME2' },
+    { INS_COMPANY_ID: 3, INS_COMPANY_BULSTAT: 'company_bulstat3', INS_COMPANY_NAME: 'COMPANY_NAME3' },
+    { INS_COMPANY_ID: 1, INS_COMPANY_BULSTAT: 'company_bulstat', INS_COMPANY_NAME: 'COMPANY_NAME', INS_COMPANY_ADDR: 'company_name', INS_COMPANY_CONTACT: 'mail@mail.com', INS_COMPANY_TEL: '072349243' },
+    { INS_COMPANY_ID: 2, INS_COMPANY_BULSTAT: 'company_bulstat2', INS_COMPANY_NAME: 'COMPANY_NAME2' },
+    { INS_COMPANY_ID: 3, INS_COMPANY_BULSTAT: 'company_bulstat3', INS_COMPANY_NAME: 'COMPANY_NAME3' },
 ]
