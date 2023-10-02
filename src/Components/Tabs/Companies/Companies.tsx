@@ -13,7 +13,7 @@ export function Companies() {
 
     const [companiesFilterForm, setCompaniesFilterForm] = useState(inputsToForm(filterInputs))
     
-    const headers: TableHeader<Company> = { id: 'Номер', name: 'Име', bulstat: 'БУЛСТАТ', telephone: 'Телефон'  }
+    const headers: TableHeader<Company> = { INS_COMPANY_ID: 'Номер', INS_COMPANY_NAME: 'Име', INS_COMPANY_BULSTAT: 'БУЛСТАТ', INS_COMPANY_TEL: 'Телефон'  }
 
     return (
         <DataPageLayout<Company> form={companiesFilterForm} setForm={setCompaniesFilterForm} formInputs={filterInputs} url="/brokers/broker.php"
