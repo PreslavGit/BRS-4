@@ -8,6 +8,8 @@ import { Layout } from './Components/Layout.tsx';
 import { Policies } from './Components/Tabs/Policies/Policies.tsx';
 import { Clients } from './Components/Tabs/Clients/Clients.tsx';
 import { Companies } from './Components/Tabs/Companies/Companies.tsx';
+import { ManageForm } from './Components/ManageForm.tsx';
+import { Company } from './Components/Tabs/Companies/Companies.ts';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
@@ -19,6 +21,8 @@ const router = createBrowserRouter(
 				<Route path='companies' element={<Companies />} />
 				<Route path='policies' element={<Policies />} />
 				<Route path='clients' element={<Clients />} />
+				<Route path='form' element={<ManageForm Entity={Company} labels={{INS_COMPANY_ID: 'ID', INS_COMPANY_NAME: 'Име', INS_COMPANY_ADDR: 'Адрес', 
+					INS_COMPANY_BULSTAT: 'БУЛСТАТ', INS_COMPANY_CONTACT: 'Контакт', INS_COMPANY_TEL: 'Телефон'}} />} />
 			</Route>
 		</Route>
 	)

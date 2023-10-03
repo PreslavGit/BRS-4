@@ -1,22 +1,20 @@
 import { FormProps } from "./Components/FormInput";
 
-export function inputsToForm(inputs: FormProps[]) {
+export function inputsToForm(inputs: FormProps[], defaults?: Record<string, any>) {
     const result: any = {}
-    return inputs.map(i => {
-        return result[i.name] = ''
+    inputs.map(i => {
+        Object.defineProperty(result, i.name, { value: defaults?.[i.name] ?? '' })
     })
+    console.log(result);
+    
+    return result
 }
 
 export function appendQueryParams(url: string, form: any) {
-    let seen = false
+    url += `?filtered=true`
     for (const input in form) {
         if(form[input]){
-            if(seen){
-                url += `&${input}=${form[input]}`
-            } else {
-                url += `?${input}=${form[input]}`
-                seen = !seen
-            }
+            url += `&${input}=${form[input]}`
         }
     }
     return url

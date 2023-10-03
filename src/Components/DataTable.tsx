@@ -1,5 +1,6 @@
-import { Add, Delete, Edit, MoreHoriz } from "@mui/icons-material";
+import { Add, Delete, Edit, MoreHoriz, Visibility } from "@mui/icons-material";
 import { Button, Dropdown, ListItemDecorator, Menu, MenuButton, MenuItem, Sheet, Table, Typography } from "@mui/joy";
+import { useNavigate } from "react-router-dom";
 
 export type TableHeader<T> = {
     [Prop in keyof T]: string
@@ -12,11 +13,14 @@ type props<T> = {
 }
 
 export function DataTable<T>({ headers, data, tableName }: props<T>) {
+
+    const n = useNavigate() 
+
     return (
         <div className="w-full h-[60vh] mr-[10vw]">
             <div className="w-full h-[7vh] pr-2 mb-[1vh] flex flex-row justify-between">
                 <Typography level='h2'>{tableName}</Typography>
-                <Button size="sm" variant="outlined">Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>
+                <Button size="sm" variant="outlined" onClick={() => n('/form')}>Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>
             </div>
             <Sheet sx={{ height: '52vh', overflow: 'auto', borderRadius: 'sm' }}>
                 <Table variant="outlined" hoverRow stickyHeader stripe={'odd'}>
@@ -31,12 +35,18 @@ export function DataTable<T>({ headers, data, tableName }: props<T>) {
                     </thead>
                     <tbody>
                         {data.map((d, i) => {
-                            return <tr key={i}>
-                                <td key={i}>
+                            return <tr key={`row-${i}`}>
+                                <td key={`data-${i}`}>
                                     <Dropdown>
                                         <MenuButton slots={{ root: MoreHoriz }}>
                                         </MenuButton>
                                         <Menu size="sm" placement="left-end">
+                                            <MenuItem color="primary">
+                                                <ListItemDecorator>
+                                                    <Visibility />
+                                                </ListItemDecorator>{' '}
+                                                Преглед
+                                            </MenuItem>
                                             <MenuItem>
                                                 <ListItemDecorator>
                                                     <Edit />
@@ -54,7 +64,7 @@ export function DataTable<T>({ headers, data, tableName }: props<T>) {
                                 </td>
                                 {Object.keys(headers).map(h => {
                                     const key = h as keyof T;
-                                    return <td key={d[key] as any}>{(d[key] as any) ? (d[key] as any) : '-----'}</td>
+                                    return <td key={`cell-${i}-${key as string}`}>{(d[key] as any) ? (d[key] as any) : '-----'}</td>
                                 })}
                             </tr>
                         })}

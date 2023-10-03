@@ -1,12 +1,12 @@
 import { Input, styled } from "@mui/joy"
-import React from "react"
+import React, { ChangeEvent } from "react"
 
 export type FormProps = Omit<props, 'form' | 'setForm' | 'type'>
 
 type props = {
     name: string
     label: string
-    setForm: React.SetStateAction<any>
+    setForm: React.Dispatch<any>
     form: any
     type?: 'text' | 'password' | 'number'
     placeholder?: string
@@ -77,11 +77,20 @@ const InnerInput = React.forwardRef<
 });
 
 export function FormInput({ name, label, form, setForm, type = 'text', placeholder = '' }: props) {
+    // console.log(form);
+    
+    function handleChange(e: ChangeEvent<HTMLInputElement>){
+        // console.log(form);
+        // console.log(name);
+        
+        setForm({...form, [name]: e.target.value })
+        console.log(form);
+    }
     return (
             <Input
                 slots={{ input: InnerInput}}
-                slotProps={{ input: { placeholder: placeholder, type: type, value: form[name], name: label,
-                    onChange: (e) => setForm({...form, [name]: e.target.value })} 
+                slotProps={{ input: { placeholder: placeholder, type: type, value: form[name] ?? '', name: label,
+                    onChange: (e) => handleChange(e)} 
                 }}
                 sx={{ '--Input-minHeight': '56px' }}
             />

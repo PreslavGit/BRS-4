@@ -14,10 +14,11 @@ type props = {
 export function TableFilter({ formInputs, form, setForm, url }: props) {
 
     function clearForm() {
+        const cleared: any= {}
         for (const input in form) {
-            form[input] = ''
+            cleared[input] = ''
         }
-        setForm(structuredClone(form))
+        setForm(cleared)
     }
 
     async function getFiltered() {

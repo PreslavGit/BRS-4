@@ -8,10 +8,12 @@ import { TableHeader } from "../../DataTable";
 export function Companies() {
     const filterInputs: FormProps[] = [
         { name: 'name', label: 'Име' },
-        { name: 'id', label: 'ID' }
+        { name: 'id', label: 'ID' },
+        { name: 'bulstat', label: 'БУЛСТАТ' },
     ]
 
-    const [companiesFilterForm, setCompaniesFilterForm] = useState(inputsToForm(filterInputs))
+    const formInit = inputsToForm(filterInputs)
+    const [companiesFilterForm, setCompaniesFilterForm] = useState(formInit)
     
     const headers: TableHeader<Company> = { INS_COMPANY_ID: 'Номер', INS_COMPANY_NAME: 'Име', INS_COMPANY_BULSTAT: 'БУЛСТАТ', INS_COMPANY_TEL: 'Телефон'  }
 
