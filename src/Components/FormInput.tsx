@@ -77,20 +77,11 @@ const InnerInput = React.forwardRef<
 });
 
 export function FormInput({ name, label, form, setForm, type = 'text', placeholder = '' }: props) {
-    // console.log(form);
-    
-    function handleChange(e: ChangeEvent<HTMLInputElement>){
-        // console.log(form);
-        // console.log(name);
-        
-        setForm({...form, [name]: e.target.value })
-        console.log(form);
-    }
     return (
             <Input
                 slots={{ input: InnerInput}}
                 slotProps={{ input: { placeholder: placeholder, type: type, value: form[name] ?? '', name: label,
-                    onChange: (e) => handleChange(e)} 
+                    onChange: (e) => setForm({...form, [name]: e.target.value })} 
                 }}
                 sx={{ '--Input-minHeight': '56px' }}
             />

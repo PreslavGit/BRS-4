@@ -19,10 +19,32 @@ const router = createBrowserRouter(
 
 			<Route path='/' element={<Layout />}>
 				<Route path='companies' element={<Companies />} />
+				<Route path='companies/add' element={
+					<ManageForm Entity={Company} caption='Добавяне на компания' actionLabel='Добавяне'
+						labels={{
+							INS_COMPANY_ID: 'ID',
+							INS_COMPANY_NAME: 'Име',
+							INS_COMPANY_ADDR: 'Адрес',
+							INS_COMPANY_BULSTAT: 'БУЛСТАТ',
+							INS_COMPANY_CONTACT: 'Контакт',
+							INS_COMPANY_TEL: 'Телефон'
+						}}
+					/>}
+				/>
+				<Route path='companies/edit/:id' element={
+					<ManageForm Entity={Company} caption='Редактиране на компания' actionLabel='Редактиране'
+						labels={{
+							INS_COMPANY_ID: 'ID',
+							INS_COMPANY_NAME: 'Име',
+							INS_COMPANY_ADDR: 'Адрес',
+							INS_COMPANY_BULSTAT: 'БУЛСТАТ',
+							INS_COMPANY_CONTACT: 'Контакт',
+							INS_COMPANY_TEL: 'Телефон'
+						}}
+					/>}
+				/>
 				<Route path='policies' element={<Policies />} />
 				<Route path='clients' element={<Clients />} />
-				<Route path='form' element={<ManageForm Entity={Company} labels={{INS_COMPANY_ID: 'ID', INS_COMPANY_NAME: 'Име', INS_COMPANY_ADDR: 'Адрес', 
-					INS_COMPANY_BULSTAT: 'БУЛСТАТ', INS_COMPANY_CONTACT: 'Контакт', INS_COMPANY_TEL: 'Телефон'}} />} />
 			</Route>
 		</Route>
 	)

@@ -2,11 +2,9 @@ import { FormProps } from "./Components/FormInput";
 
 export function inputsToForm(inputs: FormProps[], defaults?: Record<string, any>) {
     const result: any = {}
-    inputs.map(i => {
-        Object.defineProperty(result, i.name, { value: defaults?.[i.name] ?? '' })
+    inputs.forEach(i => {
+        result[i.name] = defaults?.[i.name] ?? ''
     })
-    console.log(result);
-    
     return result
 }
 
