@@ -9,9 +9,10 @@ type props = {
     form: any
     setForm: any
     url: string
+    setData: React.Dispatch<any>
 }
 
-export function TableFilter({ formInputs, form, setForm, url }: props) {
+export function TableFilter({ formInputs, form, setForm, url, setData }: props) {
 
     function clearForm() {
         const cleared: any= {}
@@ -22,7 +23,7 @@ export function TableFilter({ formInputs, form, setForm, url }: props) {
     }
 
     async function getFiltered() {
-        await GET(appendQueryParams(url, form))
+        setData(await GET(appendQueryParams(url, form)))
     }
 
     return (

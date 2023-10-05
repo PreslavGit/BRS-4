@@ -33,7 +33,8 @@ export function DataTable<T>({ headers, data, tableName }: props<T>) {
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map((d, i) => {
+                        {!!data.length ? 
+                        data.map((d, i) => {
                             return <tr key={`row-${i}`}>
                                 <td key={`data-${i}`}>
                                     <Dropdown>
@@ -67,7 +68,11 @@ export function DataTable<T>({ headers, data, tableName }: props<T>) {
                                     return <td key={`cell-${i}-${key as string}`}>{(d[key] as any) ? (d[key] as any) : '-----'}</td>
                                 })}
                             </tr>
-                        })}
+                        }) :
+                        <tr className="w-full text-center">
+                            <td colSpan={Object.keys(headers).length + 1}><Typography level="h3">Няма намерени резултати</Typography></td>
+                        </tr>
+                        }
                     </tbody>
                 </Table>
             </Sheet>

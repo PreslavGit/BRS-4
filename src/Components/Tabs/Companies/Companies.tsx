@@ -2,7 +2,7 @@ import { useState } from "react";
 import { DataPageLayout } from "../../DataPageLayout";
 import { FormProps } from "../../FormInput";
 import { inputsToForm } from "../../../helpers";
-import { Company, companiesMock } from "./Companies";
+import { Company } from "./Companies";
 import { TableHeader } from "../../DataTable";
 
 export function Companies() {
@@ -19,6 +19,6 @@ export function Companies() {
 
     return (
         <DataPageLayout<Company> form={companiesFilterForm} setForm={setCompaniesFilterForm} formInputs={filterInputs} url="/brokers/broker.php"
-            headers={headers} data={companiesMock} tableName="Компании"/>
+            headers={headers} tableName="Компании"/>
     )
 }
