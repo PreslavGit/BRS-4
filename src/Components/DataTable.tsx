@@ -16,7 +16,7 @@ export function DataTable<T>({ headers, data, tableName }: props<T>) {
     const n = useNavigate() 
 
     return (
-        <div className="w-full h-[60vh] mr-[10vw]">
+        <div className="w-full h-[60vh] mr-[10vw] max-w-[60vw]">
             <div className="w-full h-[7vh] pr-2 mb-[1vh] flex flex-row justify-between">
                 <Typography level='h2'>{tableName}</Typography>
                 <Button size="sm" variant="outlined" onClick={() => n('add')}>Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>

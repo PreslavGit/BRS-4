@@ -5,15 +5,13 @@ import { FormProps } from "./FormInput"
 import { TableFilter } from "./TableFilter"
 
 type props<T> = {
-    form: any
-    setForm: any
     formInputs: FormProps[]
     url: string
     headers: TableHeader<T>
     tableName: string
 }
 
-export function DataPageLayout<T>({ form, setForm, formInputs, url, headers, tableName }: props<T>){
+export function DataPageLayout<T>({ formInputs, url, headers, tableName }: props<T>){
     const [tableData, setTableData] = useState<T[]>()
     useEffect(() => {
         GET<T[]>(url)
@@ -21,7 +19,7 @@ export function DataPageLayout<T>({ form, setForm, formInputs, url, headers, tab
     }, [])
     return (
         <div className="flex flex-col sm:flex-row gap-12 sm:ml-12 mt-16">
-            <TableFilter form={form} setForm={setForm} formInputs={formInputs} url={url} setData={setTableData}/>
+            <TableFilter formInputs={formInputs} url={url} setData={setTableData}/>
             <DataTable headers={headers} data={tableData ?? []} tableName={tableName} />
         </div>
     )

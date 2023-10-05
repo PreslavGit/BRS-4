@@ -2,17 +2,18 @@ import { Button, Card, Divider, Stack, Typography } from "@mui/joy"
 import { FormInput, FormProps } from "./FormInput"
 import { Search } from "@mui/icons-material"
 import { GET } from "../FetchWrapper"
-import { appendQueryParams } from "../helpers"
+import { appendQueryParams, inputsToForm } from "../helpers"
+import { useState } from "react"
 
 type props = {
     formInputs: FormProps[]
-    form: any
-    setForm: any
     url: string
     setData: React.Dispatch<any>
 }
 
-export function TableFilter({ formInputs, form, setForm, url, setData }: props) {
+export function TableFilter({ formInputs, url, setData }: props) {
+    const formInit = inputsToForm(formInputs)
+    const [form, setForm] = useState(formInit)
 
     function clearForm() {
         const cleared: any= {}
