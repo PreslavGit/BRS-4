@@ -4,7 +4,7 @@ export const API_URL = 'http://p48-preview.runhosting.com/unssinsurance.atwebpag
 
 function handleError(e: Error) {
     console.error(e);
-    showSnackbar('Error with your request', 'Error')
+    showSnackbar('Възникна грешка', 'Error')
 }
 
 export async function GET<T>(url: string, redir?: () => void) {

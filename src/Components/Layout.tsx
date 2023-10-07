@@ -1,10 +1,13 @@
 import { Diversity3, Logout, Menu, SupervisorAccount, TextSnippet } from "@mui/icons-material";
-import { IconButton, List, ListItemButton, ModalClose } from "@mui/joy";
+import { IconButton, List, ListItemButton, ModalClose, Typography } from "@mui/joy";
 import Drawer from "@mui/joy/Drawer/Drawer";
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 export function Layout() {
+    function isHomePage(){
+        return window.location.pathname === '/'
+    }
 
     const [drawerOpen, setDrawerOpen] = useState(false)
 
@@ -36,11 +39,19 @@ export function Layout() {
                         </NavLink>
                     </List>
                     <IconButton variant="plain" color="danger" onClick={() => setDrawerOpen(true)} sx={{ margin: '10px' }}>
-                        <NavLink to={`login`} className={'mr-4'}>Излизане</NavLink>
+                        <NavLink to={`login`} onClick={() => localStorage.removeItem('logged')} className={'mr-4'}>Излизане</NavLink>
                         <Logout />
                     </IconButton>
                 </div>
             </Drawer>
+
+           {isHomePage() ? 
+            <div className="w-full text-center pt-[20vh]">
+                <div className="text-[58px] font-bold">Добре дошли!</div>
+            </div> :
+            <></>
+            } 
+
             <Outlet />
         </>
     )

@@ -1,4 +1,4 @@
-export function showSnackbar(message: string = 'Request Successful', type: 'Error' | 'Success' = 'Success') {
+export function showSnackbar(message: string = 'Успешна заявка', type: 'Error' | 'Success' = 'Success') {
     const snackbar = document.createElement("div");
     snackbar.className = `text-white p-4 rounded-md fixed bottom-4 right-4`
     snackbar.className += type === 'Error' ? ' bg-red-500' : ' bg-green-500'
@@ -8,5 +8,5 @@ export function showSnackbar(message: string = 'Request Successful', type: 'Erro
 
     setTimeout(() => {
         snackbar.remove();
-    }, 3000);
+    }, 2000);
 }
