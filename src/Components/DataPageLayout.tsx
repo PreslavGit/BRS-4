@@ -3,6 +3,7 @@ import { GET } from "../FetchWrapper"
 import { DataTable, TableHeader } from "./DataTable"
 import { FormProps } from "./FormInput"
 import { TableFilter } from "./TableFilter"
+import { Company } from "./Tabs/Companies/Companies"
 
 type props<T> = {
     formInputs: FormProps[]
@@ -20,7 +21,7 @@ export function DataPageLayout<T>({ formInputs, url, headers, tableName }: props
     return (
         <div className="flex flex-col sm:flex-row gap-12 sm:ml-12 mt-16">
             <TableFilter formInputs={formInputs} url={url} setData={setTableData}/>
-            <DataTable headers={headers} data={tableData ?? []} tableName={tableName} />
+            <DataTable headers={headers} data={tableData ?? []} tableName={tableName} url={url} />
         </div>
     )
 }

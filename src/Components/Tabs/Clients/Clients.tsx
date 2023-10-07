@@ -15,8 +15,6 @@ export function Clients(){
 
     const headers: TableHeader<Client> = { 
         CLIENT_ID: 'ID',
-        CLIENT_EGN_BULSTAT: 'ЕГН/БУЛСТАТ',
-        ADRESS_TEXT: 'Адрес',
         CLIENT_FULLNAME: 'Име',
         CLIENT_TYPE: 'Тип',
         EMAIL: 'E-mail',

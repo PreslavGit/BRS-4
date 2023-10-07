@@ -15,12 +15,13 @@ export function TableFilter({ formInputs, url, setData }: props) {
     const formInit = inputsToForm(formInputs)
     const [form, setForm] = useState(formInit)
 
-    function clearForm() {
+    async function clearForm() {
         const cleared: any= {}
         for (const input in form) {
             cleared[input] = ''
         }
         setForm(cleared)
+        setData(await GET(url))
     }
 
     async function getFiltered() {

@@ -23,7 +23,7 @@ export function ManageForm<T>({ Entity, labels, caption, actionLabel }: props<T>
     const [form, setForm] = useState(() => inputsToForm(inputs))
     
     return (
-        <div className="sm:w-[600px] w-[300px] p-4 rounded-xl border-blue-300 border-[1px]">
+        <div className="sm:w-[600px] w-[300px] p-4 rounded-xl border-blue-300 border-[1px] m-auto mt-12">
             <Typography level="h3" sx={{ marginBottom: '10px' }}>{caption}</Typography>
             <Stack spacing={2} direction="row" flexWrap="wrap" useFlexGap justifyContent={'center'}>
                 {inputs.map((i, ind) => {

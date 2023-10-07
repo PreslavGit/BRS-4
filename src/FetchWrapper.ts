@@ -42,3 +42,34 @@ export async function POST<T>(url: string, data: any, redir?: () => void) {
         })
         .catch(e => handleError(e))
 }
+
+export async function PUT<T>(url: string, data: any, redir?: () => void) {
+    return fetch(API_URL + url, {
+        method: 'PUT',
+        body: JSON.stringify(data),
+        credentials: 'include'
+    })
+        .then(async res => {
+            if (!res.ok) {
+                throw new Error()
+            }
+            return await res.json()
+        })
+        .then(json => {
+            showSnackbar()
+            if (redir) redir()
+            return json as T
+        })
+        .catch(e => handleError(e))
+}
+
+export async function DELETE(url: string, redir?: () => void) {
+    return fetch(API_URL + url, {
+        method: 'DELETE',
+    })
+        .then(() => {
+            showSnackbar()
+            if (redir) redir()
+        })
+        .catch(e => handleError(e))
+}
