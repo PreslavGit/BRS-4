@@ -1,4 +1,4 @@
-import { Diversity3, Logout, Menu, SupervisorAccount, TextSnippet } from "@mui/icons-material";
+import { Diversity3, Logout, Menu, ProductionQuantityLimits, ProductionQuantityLimitsTwoTone, ShoppingCart, SupervisorAccount, TextSnippet } from "@mui/icons-material";
 import { IconButton, List, ListItemButton, ModalClose, Typography } from "@mui/joy";
 import Drawer from "@mui/joy/Drawer/Drawer";
 import { useState } from "react";
@@ -25,6 +25,11 @@ export function Layout() {
                         <NavLink to={`companies`}>
                             <ListItemButton sx={{ display: 'flex', justifyContent: 'left' }}>
                                 Компании <Diversity3 sx={{marginLeft: '8px'}}/>
+                            </ListItemButton>
+                        </NavLink>
+                        <NavLink to={`products`}>
+                            <ListItemButton sx={{ display: 'flex', justifyContent: 'left' }}>
+                                Продукти <ShoppingCart sx={{marginLeft: '8px'}}/>
                             </ListItemButton>
                         </NavLink>
                         <NavLink to={`clients`}>

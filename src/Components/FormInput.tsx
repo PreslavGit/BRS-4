@@ -1,16 +1,9 @@
-import { Input, styled } from "@mui/joy"
+import { CheckBox } from "@mui/icons-material";
+import { Checkbox, Input, styled } from "@mui/joy"
 import React, { ChangeEvent } from "react"
 
 export type FormProps = Omit<props, 'form' | 'setForm' | 'type'>
 
-type props = {
-    name: string
-    label: string
-    setForm: React.Dispatch<any>
-    form: any
-    type?: 'text' | 'password' | 'number'
-    placeholder?: string
-}
 
 const StyledInput = styled('input')({
     border: 'none', // remove the native input border
@@ -76,14 +69,32 @@ const InnerInput = React.forwardRef<
     );
 });
 
-export function FormInput({ name, label, form, setForm, type = 'text', placeholder = '' }: props) {
+type props = {
+    name: string
+    label: string
+    setForm: React.Dispatch<any>
+    form: any
+    type?: 'text' | 'password' | 'number' | 'checkbox'
+    placeholder?: string
+    disabled?: boolean
+}
+
+export function FormInput({ name, label, form, setForm, type = 'text', placeholder = '', disabled = false }: props) {
     return (
-            <Input
-                slots={{ input: InnerInput}}
-                slotProps={{ input: { placeholder: placeholder, type: type, value: form[name] ?? '', name: label,
-                    onChange: (e) => setForm({...form, [name]: e.target.value })} 
-                }}
-                sx={{ '--Input-minHeight': '56px' }}
-            />
+        <>
+            {type !== 'checkbox' ?
+                <Input
+                    slots={{ input: InnerInput }}
+                    slotProps={{
+                        input: {
+                            placeholder: placeholder, type: type, value: form[name] ?? '', name: label, disabled: disabled,
+                            onChange: (e) => setForm({ ...form, [name]: e.target.value })
+                        }
+                    }}
+                    sx={{ '--Input-minHeight': '56px', opacity: disabled ? 0.7 : 1, width: '200px' }}
+                /> :
+                <Checkbox sx={{ display: 'flex', alignItems: 'center', marginY: '10px'}} label={label} slotProps={{ input: { onChange: () => setForm({ ...form, [name]: !form[name] }) }}} />
+            }
+        </>
     )
 }
