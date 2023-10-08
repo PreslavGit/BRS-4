@@ -1,25 +1,31 @@
-import { Button, Stack, Typography } from "@mui/joy"
+import { Autocomplete, Button, Stack, Typography } from "@mui/joy"
 import { FormInput, FormProps } from "./FormInput"
 import { useState } from "react"
 import { inputsToForm } from "../helpers"
+import { FormAutocomplete } from "./FormAutocomplete"
 
 type defaults<T> =  Partial<Record<keyof T, string>>
+
+type selects<T> = {
+    prop: keyof T,
+    url: string
+}
 
 type props<T> = {
     Entity: new () => T
     labels: Record<keyof T, string>
     caption: string
     actionLabel: string
+    selects?: selects<T>[]
 }
 
-export function ManageForm<T>({ Entity, labels, caption, actionLabel }: props<T>) {
+function ManageForm<T>({ Entity, labels, caption, actionLabel, selects }: props<T>) {
     const e = new Entity()
     const inputs: FormProps[] = Object.keys(e as any).map(i => {
         return { name: i, label: labels[i as keyof T]} 
     })
 
     // TODO: get defaults if route id(edit mode)
-     
     const [form, setForm] = useState(() => inputsToForm(inputs))
     
     return (
@@ -28,7 +34,9 @@ export function ManageForm<T>({ Entity, labels, caption, actionLabel }: props<T>
             <Stack spacing={2} direction="row" flexWrap="wrap" useFlexGap justifyContent={'center'}>
                 {inputs.map((i, ind) => {
                     if(ind){
-                        return <FormInput form={form} label={i.label} name={i.name} setForm={setForm} key={i.name}/>
+                        return selects?.map(s => s.prop).includes(i.name as keyof T) ?
+                            <FormAutocomplete setState={setForm} state={form} name={i.name} url={selects.find(s => s.prop == i.name)?.url ?? ''} key={i.name} /> :
+                            <FormInput form={form} label={i.label} name={i.name} setForm={setForm} key={i.name}/>
                     }
                 })}
             </Stack>
