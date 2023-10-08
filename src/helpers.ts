@@ -17,3 +17,7 @@ export function appendQueryParams(url: string, form: any) {
     }
     return url
 }
+
+export function getId(entity: any){
+    return entity[Object.keys(entity)[0]] as number
+}

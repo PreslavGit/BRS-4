@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { ConfirmModal } from "./ConfirmModal";
 import { DELETE } from "../FetchWrapper";
+import { getId } from "../helpers";
 
 export type TableHeader<T> = {
     [Prop in keyof Partial<T>]: string
@@ -20,6 +21,7 @@ export function DataTable<T>({ headers, data, tableName, url }: props<T>) {
     const n = useNavigate()
 
     const [openDelModal, setOpenDelModal] = useState(false);
+    let selectedItem: T | null
 
     return (
         <div className="w-full h-[60vh] mr-[10vw] max-w-[60vw]">
@@ -43,7 +45,7 @@ export function DataTable<T>({ headers, data, tableName, url }: props<T>) {
                             data.map((d, i) => {
                                 return <tr key={`row-${i}`}>
                                     <td key={`data-${i}`}>
-                                        <Dropdown>
+                                        <Dropdown onOpenChange={() => selectedItem = d}>
                                             <MenuButton slots={{ root: MoreHoriz }}>
                                             </MenuButton>
                                             <Menu size="sm" placement="left-end">
@@ -53,8 +55,7 @@ export function DataTable<T>({ headers, data, tableName, url }: props<T>) {
                                                     </ListItemDecorator>{' '}
                                                     Преглед
                                                 </MenuItem>
-                                                {/* @ts-ignore  tries to get id prop*/}
-                                                <MenuItem onClick={() => n(`edit/${d[Object.keys(d)[0]]}`)}>
+                                                <MenuItem onClick={() => n(`edit/${getId(d)}`)}>
                                                     <ListItemDecorator>
                                                         <Edit />
                                                     </ListItemDecorator>{' '}
@@ -85,8 +86,7 @@ export function DataTable<T>({ headers, data, tableName, url }: props<T>) {
             
 
             <ConfirmModal state={openDelModal} setState={setOpenDelModal} type="Warning"
-                action={() => DELETE(url)} /> 
-                {/* TODO add id to url */}
+                action={() => DELETE(url + '/' +  getId(selectedItem))} /> 
 
             <Outlet />
         </div>

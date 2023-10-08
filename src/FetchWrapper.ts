@@ -8,7 +8,7 @@ function handleError(e: Error) {
 }
 
 export async function GET<T>(url: string, redir?: () => void) {
-    return fetch(API_URL + url, { credentials: 'include' })
+    return fetch(API_URL + url, { credentials: 'include', headers: {'X-FRONTEND-URL': window.location.href } })
         .then(async res => {
             if (!res.ok) {
                 throw new Error()
@@ -27,7 +27,8 @@ export async function POST<T>(url: string, data: any, redir?: () => void) {
     return fetch(API_URL + url, {
         method: 'POST',
         body: JSON.stringify(data),
-        credentials: 'include'
+        credentials: 'include',
+        headers: {'X-FRONTEND-URL': window.location.href }
     })
         .then(async res => {
             if (!res.ok) {
@@ -47,7 +48,8 @@ export async function PUT<T>(url: string, data: any, redir?: () => void) {
     return fetch(API_URL + url, {
         method: 'PUT',
         body: JSON.stringify(data),
-        credentials: 'include'
+        credentials: 'include',
+        headers: {'X-FRONTEND-URL': window.location.href }
     })
         .then(async res => {
             if (!res.ok) {
@@ -66,6 +68,7 @@ export async function PUT<T>(url: string, data: any, redir?: () => void) {
 export async function DELETE(url: string, redir?: () => void) {
     return fetch(API_URL + url, {
         method: 'DELETE',
+        headers: {'X-FRONTEND-URL': window.location.href }
     })
         .then(() => {
             showSnackbar()

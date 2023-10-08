@@ -3,7 +3,6 @@ import { GET } from "../FetchWrapper"
 import { DataTable, TableHeader } from "./DataTable"
 import { FormProps } from "./FormInput"
 import { TableFilter } from "./TableFilter"
-import { Company } from "./Tabs/Companies/Companies"
 
 type props<T> = {
     formInputs: FormProps[]
