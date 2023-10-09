@@ -35,7 +35,7 @@ export function TableFilter({ formInputs, url, setData }: props) {
             <div className="overflow-y-scroll h-full flex flex-col">
                 <Stack sx={{ height: '100%', maxWidth: '200px', margin: 'auto', marginTop: '10px' }} spacing={2}>
                     {formInputs.map(i => {
-                        return <FormInput name={i.name} label={i.label} form={form} setForm={setForm} key={i.name} />
+                        return <FormInput name={i.name} label={i.label} form={form} setForm={setForm} key={i.name} type={i.type} sourceUrl={i.sourceUrl} displayProp={i.displayProp}/>
                     })}
                 </Stack>
             </div>

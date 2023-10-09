@@ -8,10 +8,10 @@ export function Products(){
         { name: 'code', label: 'Код' },
         { name: 'name', label: 'Име' },
         { name: 'type', label: 'Тип' },
-        { name: 'allowsCredit', label: 'Разсрочено палащане' },
+        { name: 'allowsCredit', label: 'Разсрочено палащане', type: 'checkbox' },
         { name: 'prem', label: 'Процент на премия' },
         { name: 'commission', label: 'Процент комисия' },
-        { name: 'companyId', label: 'Компания' },
+        { name: 'companyId', label: 'Компания', type: 'autocomplete', sourceUrl: 'brokers/broker.php/companies', displayProp: 'INS_COMPANY_NAME'},
     ]
 
     const headers: TableHeader<Product> = { 
