@@ -1,4 +1,4 @@
-export class Policies {
+export class Policy {
     POLICY_ID!: number
     POLICY_NO!: string
     POLICY_DATE!: string
@@ -14,5 +14,4 @@ export class Policies {
     POLICY_TAX!: number
     POLICY_INS_COMISS?: number
     POLICY_NOTE?: string
-
 }

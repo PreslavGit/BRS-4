@@ -9,10 +9,11 @@ type props<T>= {
     setState: React.Dispatch<any>
     state: T
     name: string
+    label: string
     displayProp: keyof T
 }
 
-export function FormAutocomplete<T>({url, state, setState, name, displayProp}: props<T>){
+export function FormAutocomplete<T>({url, state, setState, name, displayProp, label}: props<T>){
     const [options, setOptions] = useState<T[]>([])
     const companies: Company[] = []
     const c1 = new Company()
@@ -33,10 +34,10 @@ export function FormAutocomplete<T>({url, state, setState, name, displayProp}: p
 
     return (
         <>
-            <Autocomplete options={options} 
+            <Autocomplete options={options} placeholder={label}
                 onChange={(_, v) => setState({...state, [name]: getId(v) })} 
                 getOptionLabel={option => option[displayProp] as string}
-                sx={{ minHeight: '54px' }}
+                sx={{ minHeight: '54px', width: '200px' }}
             />
         </>
     )

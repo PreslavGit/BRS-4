@@ -69,12 +69,14 @@ const InnerInput = React.forwardRef<
     );
 });
 
+export type inputType = 'text' | 'password' | 'number' | 'checkbox' | 'autocomplete' | 'date' 
+
 type props = {
     name: string
     label: string
     setForm: React.Dispatch<any>
     form: any
-    type?: 'text' | 'password' | 'number' | 'checkbox' | 'autocomplete'
+    type?: inputType
     placeholder?: string
     disabled?: boolean
     sourceUrl?: string
@@ -88,7 +90,7 @@ export function FormInput({ name, label, form, setForm, type = 'text', placehold
             type === 'checkbox' ?
                 <Checkbox sx={{ display: 'flex', alignItems: 'center', marginY: '10px'}} label={label} slotProps={{ input: { onChange: () => setForm({ ...form, [name]: !form[name] }) }}} />: 
             type === 'autocomplete' ?
-                <FormAutocomplete name={name} state={form} setState={setForm} url={sourceUrl ?? ''} displayProp={displayProp ?? ''}/> :
+                <FormAutocomplete name={name} state={form} setState={setForm} url={sourceUrl ?? ''} displayProp={displayProp ?? ''} label={label}/> :
              
                 <Input
                     slots={{ input: InnerInput }}

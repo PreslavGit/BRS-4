@@ -45,11 +45,10 @@ export function ManageClient({ type }: { type: 'Add' | 'Edit'}) {
             <Typography level="h3" sx={{ marginBottom: '10px' }}>{caption}</Typography>
             <Stack spacing={2} direction="row" flexWrap="wrap" useFlexGap justifyContent={'center'}>
                 {(Object.keys(labels) as (keyof Client)[]).map((i, ind) => {
-                    if(ind && type === "Add"){
-                        return <FormInput form={form} label={labels[i]} name={i} setForm={setForm} key={i} 
-                            disabled={i === 'CLIENT_ID'}
-                        />
-                    }
+                    if(ind === 0 && type === "Add") return null
+                    return <FormInput form={form} label={labels[i]} name={i} setForm={setForm} key={i} 
+                        disabled={i === 'CLIENT_ID'}
+                    />
                 })}
             </Stack>
             <div className="w-full flex justify-center items-center mt-4">

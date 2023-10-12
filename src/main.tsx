@@ -12,6 +12,7 @@ import { ManageCompany } from './Components/Tabs/Companies/ManageCompany.tsx';
 import { ManageClient } from './Components/Tabs/Clients/ManageClient.tsx';
 import { Products } from './Components/Tabs/Products/Product.tsx';
 import { ManageProduct } from './Components/Tabs/Products/ManageProduct.tsx';
+import { ManagePolicy } from './Components/Tabs/Policies/ManagePolicy.tsx';
 
 
 export function App() {
@@ -34,6 +35,8 @@ export function App() {
 					<Route path='products/edit/:id' element={<ManageProduct type='Edit' />} />
 
 					<Route path='policies' element={<Policies />} />
+					<Route path='policies/add' element={<ManagePolicy type='Add' />} />
+					<Route path='policies/edit/:id' element={<ManagePolicy type='Edit' />} />
 
 					<Route path='clients' element={<Clients />} />
 					<Route path='clients/add' element={<ManageClient type='Add' />} />
