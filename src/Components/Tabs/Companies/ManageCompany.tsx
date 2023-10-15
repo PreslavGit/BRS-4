@@ -22,7 +22,7 @@ export function ManageCompany({ type }: { type: 'Add' | 'Edit'}) {
 
     useEffect(() => {
         if(type === 'Edit'){
-            GET<Company>(`/brokers/broker.php/company?filter=true&id=${params.id}`) 
+            GET<Company>(`/brokers/broker.php`) 
                 .then(res => { if(res) setForm(res) })
         }
     }, [])
@@ -30,9 +30,9 @@ export function ManageCompany({ type }: { type: 'Add' | 'Edit'}) {
     function handleSubmit(){
         console.log(form);
         if(type === 'Add'){
-            POST('/companies/add', form)
+            POST('/brokers/broker.php', form)
         } else {
-            PUT(`/companies/edit/${params.id}`, form)
+            PUT(`/brokers/broker.php`, form)
         }
     }
 
