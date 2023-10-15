@@ -86,7 +86,7 @@ export function DataTable<T>({ headers, data, tableName, url }: props<T>) {
             
 
             <ConfirmModal state={openDelModal} setState={setOpenDelModal} type="Warning"
-                action={() => DELETE(url + '/' +  getId(selectedItem))} /> 
+                action={() => DELETE(url + '?id=' +  getId(selectedItem))} /> 
 
             <Outlet />
         </div>
