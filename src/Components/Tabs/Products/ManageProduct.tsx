@@ -24,17 +24,17 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
 
     useEffect(() => {
         if(type === 'Edit'){
-            GET<Product>(`/brokers/broker.php/company?filter=true&id=${params.id}`) 
+            GET<Product>(`/products/products.php`) 
                 .then(res => { if(res) setForm(res) })
         }
     }, [])
 
-    function handleSubmit(){
+   function handleSubmit(){
         console.log(form);
         if(type === 'Add'){
-            POST('/companies/add', form)
+            POST('/products/products.php', form)
         } else {
-            PUT(`/companies/edit/${params.id}`, form)
+            PUT(`/products/products.php`, form)
         }
     }
 
