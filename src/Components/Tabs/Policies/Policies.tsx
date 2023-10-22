@@ -1,3 +1,4 @@
+import { getCompanies } from "../../../APIService"
 import { DataPageLayout } from "../../DataPageLayout"
 import { TableHeader } from "../../DataTable"
 import { FormProps } from "../../FormInput"
@@ -8,8 +9,8 @@ export function Policies(){
         { name: 'id', label: 'Номер' },
         { name: 'startDate', label: 'Сключена след', type: 'date' },
         { name: 'endDate', label: 'Сключена преди', type: 'date' },
-        { name: 'client', label: 'Клиент', type: 'autocomplete', sourceUrl: '/clients'},
-        { name: 'productId', label: 'Продукт', type: 'autocomplete', sourceUrl: '/products' },
+        { name: 'client', label: 'Клиент', type: 'autocomplete', fetcher: getCompanies },
+        { name: 'productId', label: 'Продукт', type: 'autocomplete', fetcher: getCompanies },
     ]
 
     const headers: TableHeader<Policy> = { 

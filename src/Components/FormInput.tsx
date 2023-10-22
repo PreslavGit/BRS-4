@@ -79,18 +79,18 @@ type props = {
     type?: inputType
     placeholder?: string
     disabled?: boolean
-    sourceUrl?: string
+    fetcher?: () => any
     displayProp?: string
 }
 
-export function FormInput({ name, label, form, setForm, type = 'text', placeholder = '', disabled = false, sourceUrl, displayProp }: props) {
+export function FormInput({ name, label, form, setForm, type = 'text', placeholder = '', disabled = false, fetcher, displayProp }: props) {
     return (
         <>
             {
             type === 'checkbox' ?
                 <Checkbox sx={{ display: 'flex', alignItems: 'center', marginY: '10px'}} label={label} slotProps={{ input: { onChange: () => setForm({ ...form, [name]: !form[name] }) }}} />: 
             type === 'autocomplete' ?
-                <FormAutocomplete name={name} state={form} setState={setForm} url={sourceUrl ?? ''} displayProp={displayProp ?? ''} label={label}/> :
+                <FormAutocomplete name={name} state={form} setState={setForm} fetcher={fetcher!} displayProp={displayProp ?? ''} label={label}/> :
              
                 <Input
                     slots={{ input: InnerInput }}

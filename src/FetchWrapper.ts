@@ -7,8 +7,8 @@ function handleError(e: Error) {
     showSnackbar('Възникна грешка', 'Error')
 }
 
-export async function GET<T>(url: string, redir?: () => void) {
-    return fetch(API_URL + url, { credentials: 'include', headers: {'X-FRONTEND-URL': window.location.href } })
+export async function GET<T>(url: string, redir?: () => void, fePath?: string) {
+    return fetch(API_URL + url, { credentials: 'include', headers: {'X-FRONTEND-URL': fePath ?? window.location.href } })
         .then(async res => {
             if (!res.ok) {
                 throw new Error()

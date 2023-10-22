@@ -4,6 +4,7 @@ import { FormInput } from "../../FormInput"
 import { Company } from "./Companies"
 import { GET, POST, PUT } from "../../../FetchWrapper"
 import { useParams } from "react-router-dom"
+import { getCompanyById } from "../../../APIService"
 
 const labels: Record<keyof Company, string> = {
     INS_COMPANY_ID: 'ID',
@@ -21,9 +22,9 @@ export function ManageCompany({ type }: { type: 'Add' | 'Edit'}) {
     const params = useParams()
 
     useEffect(() => {
-        if(type === 'Edit'){
-            GET<Company>(`/brokers/broker.php`) 
-                .then(res => { if(res) setForm(res) })
+        if(type === 'Edit' && params.id){
+            getCompanyById(Number(params.id)) 
+                .then(res => { if(res) setForm(res[0]) })
         }
     }, [])
 
@@ -42,8 +43,8 @@ export function ManageCompany({ type }: { type: 'Add' | 'Edit'}) {
             <Stack spacing={2} direction="row" flexWrap="wrap" useFlexGap justifyContent={'center'}>
                 {(Object.keys(labels) as (keyof Company)[]).map((i, ind) => {
                     if(ind === 0 && type === "Add") return null
-                    return <FormInput form={form} label={labels[i]} name={i} setForm={setForm} key={i} 
-                                disabled={i === 'INS_COMPANY_ID'} 
+                    return <FormInput form={form} label={labels[i]} name={i} setForm={setForm} key={i}
+                                disabled={i === 'INS_COMPANY_ID'}
                             />
                 })}
             </Stack>

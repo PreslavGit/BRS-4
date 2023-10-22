@@ -2,6 +2,7 @@ import { Product } from './Product'
 import { DataPageLayout } from "../../DataPageLayout";
 import { FormProps } from "../../FormInput";
 import { TableHeader } from "../../DataTable";
+import { getCompanies } from '../../../APIService';
 
 export function Products(){
     const filterInputs: FormProps[] = [
@@ -11,7 +12,7 @@ export function Products(){
         { name: 'allowsCredit', label: 'Разсрочено палащане', type: 'checkbox' },
         { name: 'prem', label: 'Процент на премия' },
         { name: 'commission', label: 'Процент комисия' },
-        { name: 'companyId', label: 'Компания', type: 'autocomplete', sourceUrl: 'brokers/broker.php/companies', displayProp: 'INS_COMPANY_NAME'},
+        { name: 'companyId', label: 'Компания', type: 'autocomplete', fetcher: getCompanies, displayProp: 'INS_COMPANY_NAME'},
     ]
 
     const headers: TableHeader<Product> = { 
