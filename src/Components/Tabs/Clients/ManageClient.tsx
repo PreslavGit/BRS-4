@@ -34,9 +34,9 @@ export function ManageClient({ type }: { type: 'Add' | 'Edit'}) {
     function handleSubmit(){
         console.log(form);
         if(type === 'Add'){
-            POST('/clients/add', form)
+            POST('/clients/client.php', form)
         } else {
-            PUT(`/client/edit/${params.id}`, form)
+            PUT(`/clients/client.php`, form)
         }
     }
 
