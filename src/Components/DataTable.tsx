@@ -14,10 +14,11 @@ type props<T> = {
     headers: TableHeader<T>
     data: T[]
     tableName: string
-    url: string
+    url?: string,
+    hideAction?: boolean
 }
 
-export function DataTable<T>({ headers, data, tableName, url }: props<T>) {
+export function DataTable<T>({ headers, data, tableName, url, hideAction = false }: props<T>) {
     const n = useNavigate()
 
     const [openDelModal, setOpenDelModal] = useState(false);
@@ -25,7 +26,7 @@ export function DataTable<T>({ headers, data, tableName, url }: props<T>) {
 
     return (
         <div className="w-full h-[60vh] mr-[10vw] max-w-[60vw]">
-            <div className="w-full h-[7vh] pr-2 mb-[1vh] flex flex-row justify-between">
+            <div className={`w-full h-[7vh] pr-2 mb-[1vh] flex flex-row justify-between ${hideAction ? 'hidden' : ''}`} key={'actionHeader'}>
                 <Typography level='h2'>{tableName}</Typography>
                 <Button size="sm" variant="outlined" onClick={() => n('add')}>Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>
             </div>
@@ -33,7 +34,7 @@ export function DataTable<T>({ headers, data, tableName, url }: props<T>) {
                 <Table variant="outlined" hoverRow stickyHeader stripe={'odd'}>
                     <thead>
                         <tr className="h-[30px]">
-                            <th className="w-[50px]" key={'actionHeader'}></th>
+                            <th className={`w-[50px] ${hideAction ? 'hidden' : ''}`} key={'actionHeader'}></th>
                             {Object.keys(headers).map(h => {
                                 const key = h as keyof T;
                                 return <th key={headers[key]} className="w-[150px]">{headers[key]}</th>
@@ -44,12 +45,12 @@ export function DataTable<T>({ headers, data, tableName, url }: props<T>) {
                         {!!data.length ?
                             data.map((d, i) => {
                                 return <tr key={`row-${i}`}>
-                                    <td key={`data-${i}`}>
+                                    <td key={`data-${i}`} className={hideAction ? 'hidden' : ''}>
                                         <Dropdown onOpenChange={() => selectedItem = d}>
                                             <MenuButton slots={{ root: MoreHoriz }}>
                                             </MenuButton>
                                             <Menu size="sm" placement="left-end">
-                                                <MenuItem color="primary">
+                                                <MenuItem color="primary" onClick={() => n(`details/${getId(d)}`)}>
                                                     <ListItemDecorator>
                                                         <Visibility />
                                                     </ListItemDecorator>{' '}
