@@ -1,4 +1,4 @@
-import { getCompanies } from "../../../APIService"
+import { getClients, getProducts } from "../../../APIService"
 import { DataPageLayout } from "../../DataPageLayout"
 import { TableHeader } from "../../DataTable"
 import { FormProps } from "../../FormInput"
@@ -9,8 +9,8 @@ export function Policies(){
         { name: 'id', label: 'Номер' },
         { name: 'startDate', label: 'Сключена след', type: 'date' },
         { name: 'endDate', label: 'Сключена преди', type: 'date' },
-        { name: 'client', label: 'Клиент', type: 'autocomplete', fetcher: getCompanies },
-        { name: 'productId', label: 'Продукт', type: 'autocomplete', fetcher: getCompanies },
+        { name: 'client', label: 'Клиент', type: 'autocomplete', fetcher: getClients, displayProp: 'CLIENT_FULLNAME' },
+        { name: 'productId', label: 'Продукт', type: 'autocomplete', fetcher: getProducts, displayProp: 'INS_PROD_NAME' },
     ]
 
     const headers: TableHeader<Policy> = { 

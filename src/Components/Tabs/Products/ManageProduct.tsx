@@ -5,9 +5,10 @@ import { GET, POST, PUT } from "../../../FetchWrapper"
 import { useParams } from "react-router-dom"
 import { Product } from "./Product"
 import { ConfirmModal } from "../../ConfirmModal"
+import { getClients, getCompanies } from "../../../APIService"
 
 const labels: Record<keyof Product, string> = {
-    INS_COMPANY_ID: 'ID',
+    INS_COMPANY_ID: 'Компаня',
     INS_PROD_NAME: 'Име',
     INS_PROD_CODE: 'Код',
     INS_PROD_COMISS_PERC: 'Процент на комисия',
@@ -28,6 +29,8 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
         if(type === 'Edit'){
             GET<Product>(`/products/products.php`) 
                 .then(res => { if(res) setForm(res) })
+        } else {
+            
         }
     }, [])
 
@@ -43,7 +46,28 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
         if(i === 'INS_PROD_DEFERED'){
             return 'checkbox'
         }
+        if(i === 'INS_COMPANY_ID'){
+            return 'autocomplete'
+        }
         return 'text'
+    }
+
+    function getFetcher(label: keyof Product){
+        switch (label) {
+            case 'INS_COMPANY_ID':
+                return getCompanies
+            default:
+                break;
+        }
+    }
+
+    function getDisplayProp(label: keyof Product){
+        switch (label) {
+            case 'INS_COMPANY_ID':
+                return 'INS_COMPANY_NAME'
+            default:
+                return undefined;
+        }
     }
 
     return (
@@ -51,9 +75,9 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
             <Typography level="h3" sx={{ marginBottom: '10px' }}>{caption}</Typography>
             <Stack spacing={2} direction="row" flexWrap="wrap" useFlexGap justifyContent={'center'}>
                 {(Object.keys(labels) as (keyof Product)[]).map((i, ind) => {
-                    if((ind === 0 || i == 'MODIF_DATE') && type === "Add") return null
+                    if((i == 'MODIF_DATE') && type === "Add") return null
                     return <FormInput form={form} label={labels[i]} name={i} setForm={setForm} key={i} 
-                                disabled={i === 'INS_COMPANY_ID' || i === 'MODIF_DATE'} type={getType(i)} 
+                                fetcher={getFetcher(i)} displayProp={getDisplayProp(i)} disabled={i === 'MODIF_DATE'} type={getType(i)} 
                             />
                 })}
             </Stack>

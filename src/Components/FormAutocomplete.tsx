@@ -1,8 +1,6 @@
 import { Autocomplete } from "@mui/joy"
 import { useEffect, useState } from "react"
-import { GET } from "../FetchWrapper"
 import { getId } from "../helpers"
-import { Company } from "./Tabs/Companies/Companies"
 
 type props<T>= {
     fetcher: () => any,
