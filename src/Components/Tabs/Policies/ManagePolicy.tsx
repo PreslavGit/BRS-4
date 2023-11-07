@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom"
 import { POST, PUT } from "../../../FetchWrapper"
 import { FormInput, FormProps, inputType as InputType } from "../../FormInput"
 import { Policy } from "./Policies"
+import { ConfirmModal } from "../../ConfirmModal"
+import { getCompanies } from "../../../APIService"
 
 const labels: Record<keyof Policy, string> = {
     POLICY_ID: 'ID',
@@ -28,6 +30,7 @@ export function ManagePolicy({ type }: { type: 'Add' | 'Edit'}) {
 
     const [form, setForm] = useState(new Policy())
     const params = useParams()
+    const [openConfirmModal, setConfirmModal] = useState(false);
 
     useEffect(() => {
         if(type === 'Edit'){
@@ -37,7 +40,6 @@ export function ManagePolicy({ type }: { type: 'Add' | 'Edit'}) {
     }, [])
 
     function handleSubmit(){
-        console.log(form);
         if(type === 'Add'){
             POST('/companies/add', form)
         } else {
@@ -62,6 +64,18 @@ export function ManagePolicy({ type }: { type: 'Add' | 'Edit'}) {
         }
         return "text"
     }
+    
+    function getInputFetcher(label: keyof Policy): any{
+        switch (label) {
+            case 'CLIENT_ID':
+                return getCompanies
+            case 'INS_OBJECT_TYPE_ID':
+                return getCompanies
+            default:
+                break;
+        }
+        return "text"
+    }
 
     return (
         <div className="sm:w-[600px] w-[300px] p-4 rounded-xl border-blue-300 border-[1px] m-auto mt-12">
@@ -70,12 +84,14 @@ export function ManagePolicy({ type }: { type: 'Add' | 'Edit'}) {
                 {(Object.keys(labels) as (keyof Policy)[]).map((i, ind) => {
                     if((ind === 0 || i === 'POLICY_DATE' || i === 'POLICY_ACTIVE' || i === 'POLICY_NO') && type === "Add") return null
                     return <FormInput form={form} label={labels[i]} name={i} setForm={setForm} key={i} type={getInputType(i)}
-                            />
+                            fetcher={getInputFetcher(i)} />
                 })}
             </Stack>
             <div className="w-full flex justify-center items-center mt-4">
-                <Button onClick={handleSubmit}>{actionLabel}</Button>
+                <Button onClick={() => setConfirmModal(true)}>{actionLabel}</Button>
             </div>
+            <ConfirmModal state={openConfirmModal} setState={setConfirmModal} type="Info"
+                action={() => handleSubmit() as any} /> 
         </div>
     )
 }

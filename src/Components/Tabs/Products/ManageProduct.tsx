@@ -4,6 +4,7 @@ import { FormInput } from "../../FormInput"
 import { GET, POST, PUT } from "../../../FetchWrapper"
 import { useParams } from "react-router-dom"
 import { Product } from "./Product"
+import { ConfirmModal } from "../../ConfirmModal"
 
 const labels: Record<keyof Product, string> = {
     INS_COMPANY_ID: 'ID',
@@ -21,6 +22,7 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
 
     const [form, setForm] = useState(new Product())
     const params = useParams()
+    const [openConfirmModal, setConfirmModal] = useState(false);
 
     useEffect(() => {
         if(type === 'Edit'){
@@ -30,7 +32,6 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
     }, [])
 
    function handleSubmit(){
-        console.log(form);
         if(type === 'Add'){
             POST('/products/products.php', form)
         } else {
@@ -57,9 +58,10 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
                 })}
             </Stack>
             <div className="w-full flex justify-center items-center mt-4">
-                <Button onClick={handleSubmit}>{actionLabel}</Button>
+                <Button onClick={() => setConfirmModal(true)}>{actionLabel}</Button>
             </div>
-            {/* TODO add confirm modal on edit */}
+            <ConfirmModal state={openConfirmModal} setState={setConfirmModal} type="Info"
+                action={() => handleSubmit() as any} /> 
         </div>
     )
 }

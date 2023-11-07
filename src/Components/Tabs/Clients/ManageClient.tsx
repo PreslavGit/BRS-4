@@ -4,6 +4,7 @@ import { FormInput } from "../../FormInput"
 import { GET, POST, PUT } from "../../../FetchWrapper"
 import { useParams } from "react-router-dom"
 import { Client } from "./Clients"
+import { ConfirmModal } from "../../ConfirmModal"
 
 const labels: Record<keyof Client, string> = {
     CLIENT_ID: 'ID',
@@ -23,6 +24,7 @@ export function ManageClient({ type }: { type: 'Add' | 'Edit'}) {
 
     const [form, setForm] = useState(new Client())
     const params = useParams()
+    const [openConfirmModal, setConfirmModal] = useState(false);
 
     useEffect(() => {
         if(type === 'Edit'){
@@ -52,8 +54,10 @@ export function ManageClient({ type }: { type: 'Add' | 'Edit'}) {
                 })}
             </Stack>
             <div className="w-full flex justify-center items-center mt-4">
-                <Button onClick={handleSubmit}>{actionLabel}</Button>
+                <Button onClick={() => setConfirmModal(true)}>{actionLabel}</Button>
             </div>
+            <ConfirmModal state={openConfirmModal} setState={setConfirmModal} type="Info"
+                action={() => handleSubmit() as any} /> 
         </div>
     )
 }
