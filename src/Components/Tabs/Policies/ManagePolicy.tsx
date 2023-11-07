@@ -2,15 +2,15 @@ import { Typography, Stack, Button } from "@mui/joy"
 import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { POST, PUT } from "../../../FetchWrapper"
-import { FormInput, FormProps, inputType as InputType } from "../../FormInput"
+import { FormInput, inputType as InputType } from "../../FormInput"
 import { Policy } from "./Policies"
 import { ConfirmModal } from "../../ConfirmModal"
-import { getCompanies } from "../../../APIService"
+import { getClients, getObjectTypes } from "../../../APIService"
 
 const labels: Record<keyof Policy, string> = {
     POLICY_ID: 'ID',
-    CLIENT_ID: 'Клиент ID',
-    INS_OBJECT_TYPE_ID: 'Обект ID',
+    CLIENT_ID: 'Клиент',
+    INS_OBJECT_TYPE_ID: 'Обект',
     INS_PROD_CODE: 'Koд на продукт',
     OBJECT_DESCRIPTION: 'Описания на обект',
     POLICY_ACTIVE: 'Активна',
@@ -65,16 +65,27 @@ export function ManagePolicy({ type }: { type: 'Add' | 'Edit'}) {
         return "text"
     }
     
-    function getInputFetcher(label: keyof Policy): any{
+    function getInputFetcher(label: keyof Policy){
         switch (label) {
             case 'CLIENT_ID':
-                return getCompanies
+                return getClients
             case 'INS_OBJECT_TYPE_ID':
-                return getCompanies
+                return getObjectTypes
             default:
                 break;
         }
         return "text"
+    }
+
+    function getDisplayProp(label: keyof Policy){
+        switch (label) {
+            case 'CLIENT_ID':
+                return 'CLIENT_FULLNAME'
+            case 'INS_OBJECT_TYPE_ID':
+                return 'INS_OBJECT_TYPE_NAME'
+            default:
+                return undefined;
+        }
     }
 
     return (
@@ -84,7 +95,7 @@ export function ManagePolicy({ type }: { type: 'Add' | 'Edit'}) {
                 {(Object.keys(labels) as (keyof Policy)[]).map((i, ind) => {
                     if((ind === 0 || i === 'POLICY_DATE' || i === 'POLICY_ACTIVE' || i === 'POLICY_NO') && type === "Add") return null
                     return <FormInput form={form} label={labels[i]} name={i} setForm={setForm} key={i} type={getInputType(i)}
-                            fetcher={getInputFetcher(i)} />
+                            fetcher={getInputFetcher(i) as any} displayProp={getDisplayProp(i)} />
                 })}
             </Stack>
             <div className="w-full flex justify-center items-center mt-4">

@@ -1,6 +1,6 @@
 import { Typography, Stack, Button } from "@mui/joy"
 import { useEffect, useState } from "react"
-import { FormInput } from "../../FormInput"
+import { FormInput, inputType } from "../../FormInput"
 import { GET, POST, PUT } from "../../../FetchWrapper"
 import { useParams } from "react-router-dom"
 import { Client } from "./Clients"
@@ -10,8 +10,8 @@ const labels: Record<keyof Client, string> = {
     CLIENT_ID: 'ID',
     CLIENT_FULLNAME: 'Име',
     CLIENT_EGN_BULSTAT: 'ЕГН/БУЛСТАТ',
-    CLIENT_TYPE: 'Тип',
     EMAIL: 'E-mail',
+    CLIENT_TYPE: 'Физическо лице',
     TELEPHONE: 'Телефон',
     ADRESS_TEXT: 'Адрес',
     CLIENT_NOTE: 'Бележки',
@@ -35,10 +35,20 @@ export function ManageClient({ type }: { type: 'Add' | 'Edit'}) {
 
     function handleSubmit(){
         console.log(form);
+        form.CLIENT_TYPE = (form.CLIENT_TYPE ? 1 : 0) as any
         if(type === 'Add'){
             POST('/clients/client.php', form)
         } else {
             PUT(`/clients/client.php`, form)
+        }
+    }
+
+    function getInputType(label: keyof Client): inputType{
+        switch (label) {
+            case 'CLIENT_TYPE':
+                return 'checkbox'
+            default:
+                return 'text';
         }
     }
 
@@ -49,7 +59,7 @@ export function ManageClient({ type }: { type: 'Add' | 'Edit'}) {
                 {(Object.keys(labels) as (keyof Client)[]).map((i, ind) => {
                     if(ind === 0 && type === "Add") return null
                     return <FormInput form={form} label={labels[i]} name={i} setForm={setForm} key={i} 
-                        disabled={i === 'CLIENT_ID'}
+                        type={getInputType(i)} disabled={i === 'CLIENT_ID'}
                     />
                 })}
             </Stack>
