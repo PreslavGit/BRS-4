@@ -5,7 +5,7 @@ import { GET, POST, PUT } from "../../../FetchWrapper"
 import { useParams } from "react-router-dom"
 import { Product } from "./Product"
 import { ConfirmModal } from "../../ConfirmModal"
-import { getClients, getCompanies } from "../../../APIService"
+import { getCompanies, getInsurances } from "../../../APIService"
 
 const labels: Record<keyof Product, string> = {
     INS_COMPANY_ID: 'Компаня',
@@ -14,7 +14,7 @@ const labels: Record<keyof Product, string> = {
     INS_PROD_COMISS_PERC: 'Процент на комисия',
     INS_PROD_DEFERED: 'Разсрочено плащане',
     INS_PROD_PREM_PERC: 'Процент на премия',
-    INS_TYPE_ID: 'Тип',
+    INS_TYPE_ID: 'Вид застраховка',
     MODIF_DATE: 'Дата на промяна'
 }
 export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
@@ -49,6 +49,9 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
         if(i === 'INS_COMPANY_ID'){
             return 'autocomplete'
         }
+        if(i === 'INS_TYPE_ID'){
+            return 'autocomplete'
+        }
         return 'text'
     }
 
@@ -56,6 +59,8 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
         switch (label) {
             case 'INS_COMPANY_ID':
                 return getCompanies
+            case 'INS_TYPE_ID':
+                return getInsurances
             default:
                 break;
         }
@@ -65,6 +70,8 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
         switch (label) {
             case 'INS_COMPANY_ID':
                 return 'INS_COMPANY_NAME'
+            case 'INS_TYPE_ID':
+                return 'INS_TYPE_NAME'
             default:
                 return undefined;
         }

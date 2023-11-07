@@ -14,11 +14,13 @@ type props<T> = {
     headers: TableHeader<T>
     data: T[]
     tableName: string
-    url: string
-    hideActions: boolean
+    url?: string,
+    hideAction?: boolean
+    addURL?: string
 }
 
-export function DataTable<T>({ headers, data, tableName, url, hideActions }: props<T>) {
+
+export function DataTable<T>({ headers, data, tableName, url, hideAction, addURL: addLink = 'add' }: props<T>) {
     const n = useNavigate()
 
     const [openDelModal, setOpenDelModal] = useState(false);
@@ -26,15 +28,15 @@ export function DataTable<T>({ headers, data, tableName, url, hideActions }: pro
 
     return (
         <div className="w-full h-[60vh] mr-[10vw] max-w-[60vw]">
-            <div className="w-full h-[7vh] pr-2 mb-[1vh] flex flex-row justify-between">
+            <div className={`w-full h-[7vh] pr-2 mb-[1vh] flex flex-row justify-between`} key={'actionHeader'}>
                 <Typography level='h2'>{tableName}</Typography>
-                <Button size="sm" variant="outlined" onClick={() => n('add')}>Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>
+                <Button size="sm" variant="outlined" onClick={() => n(addLink)}>Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>
             </div>
             <Sheet sx={{ height: '52vh', overflow: 'auto', borderRadius: 'sm' }}>
                 <Table variant="outlined" hoverRow stickyHeader stripe={'odd'}>
                     <thead>
                         <tr className="h-[30px]">
-                            <th className={`w-[50px] ${hideActions ? 'hidden' : ''}`} key={'actionHeader'}></th>
+                            <th className={`w-[50px] ${hideAction ? 'hidden' : ''}`} key={'actionHeader'}></th>
                             {Object.keys(headers).map(h => {
                                 const key = h as keyof T;
                                 return <th key={headers[key]} className="w-[150px]">{headers[key]}</th>
@@ -45,12 +47,12 @@ export function DataTable<T>({ headers, data, tableName, url, hideActions }: pro
                         {!!data.length ?
                             data.map((d, i) => {
                                 return <tr key={`row-${i}`}>
-                                    <td key={`data-${i}`} className={hideActions ? 'hidden' : ''}>
+                                    <td key={`data-${i}`} className={hideAction ? 'hidden' : ''}>
                                         <Dropdown onOpenChange={() => selectedItem = d}>
                                             <MenuButton slots={{ root: MoreHoriz }}>
                                             </MenuButton>
                                             <Menu size="sm" placement="left-end">
-                                                <MenuItem color="primary">
+                                                <MenuItem color="primary" onClick={() => n(`details/${getId(d)}`)}>
                                                     <ListItemDecorator>
                                                         <Visibility />
                                                     </ListItemDecorator>{' '}

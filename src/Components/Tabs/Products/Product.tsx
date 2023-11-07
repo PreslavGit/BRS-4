@@ -2,13 +2,13 @@ import { Product } from './Product'
 import { DataPageLayout } from "../../DataPageLayout";
 import { FormProps } from "../../FormInput";
 import { TableHeader } from "../../DataTable";
-import { getCompanies } from '../../../APIService';
+import { getCompanies, getInsurances } from '../../../APIService';
 
 export function Products(){
     const filterInputs: FormProps[] = [
         { name: 'code', label: 'Код' },
         { name: 'name', label: 'Име' },
-        { name: 'type', label: 'Тип' },
+        { name: 'type', label: 'Вид застраховка',type: 'autocomplete', fetcher: getInsurances, displayProp: 'INS_TYPE_NAME' },
         { name: 'allowsCredit', label: 'Разсрочено палащане', type: 'checkbox' },
         { name: 'prem', label: 'Процент на премия' },
         { name: 'commission', label: 'Процент комисия' },
