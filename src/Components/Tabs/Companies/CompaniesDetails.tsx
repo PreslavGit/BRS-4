@@ -33,9 +33,9 @@ export function CompaniesDetails() {
 
     return (
         <>
-            <div className="sm:w-[1000px] w-[600px] p-6 rounded-xl border-blue-900 border-[2px] m-auto mt-12 bg-blue-100">
+            <div className="sm:w-[1000px] w-[600px] p-6 rounded-xl border-blue-900 border-[2px] m-auto mt-12 bg-blue-50">
                 <div className="w-full text-center text-3xl">{c.INS_COMPANY_NAME}</div>
-                <div className="sm:w-[900px] p-6 rounded-xl border-blue-900 border-[2px] m-auto mt-5 mb-1 bg-blue-100">
+                <div className="sm:w-[900px] p-6 rounded-xl border-blue-900 border-[2px] m-auto mt-5 mb-1 bg-blue-50">
                     <div className=""><ChevronRightIcon sx={{ marginRight: '6px' }} /> Булстат: {c.INS_COMPANY_BULSTAT} </div>
                     <div className=""><ChevronRightIcon sx={{ marginRight: '6px' }} /> Адрес: {c.INS_COMPANY_ADDR}</div>
                     <div className=""><ChevronRightIcon sx={{ marginRight: '6px' }} /> E-MAIL: {c.INS_COMPANY_CONTACT}</div>
@@ -46,8 +46,9 @@ export function CompaniesDetails() {
                             Застрахователни продукти:
                         </div>
                         <div className="max-h-[250px] w-[350px] overflow-y-scroll overflow-x-hidden">
-                            <DataTable data={tableData ?? []} headers={headers} tableName="" hideAction={true} />
+                            <DataTable data={tableData ?? []} headers={headers} tableName="" hideAction={false} />
                         </div>
+                        
                     </div>
 
                 </div>

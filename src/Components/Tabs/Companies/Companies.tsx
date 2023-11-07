@@ -13,10 +13,10 @@ export function Companies() {
     ]
 
     const headers: TableHeader<Company> = { 
-        INS_COMPANY_ID: 'Номер', 
+       // INS_COMPANY_ID: 'Номер', 
         INS_COMPANY_NAME: 'Име', 
         INS_COMPANY_BULSTAT: 'БУЛСТАТ', 
-        INS_COMPANY_TEL: 'Телефон'  
+       // INS_COMPANY_TEL: 'Телефон'  
     }        
 
     return (

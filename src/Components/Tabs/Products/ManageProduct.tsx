@@ -6,13 +6,13 @@ import { useParams } from "react-router-dom"
 import { Product } from "./Product"
 
 const labels: Record<keyof Product, string> = {
-    INS_COMPANY_ID: 'ID',
+    INS_COMPANY_ID: 'ID ',
     INS_PROD_NAME: 'Име',
     INS_PROD_CODE: 'Код',
     INS_PROD_COMISS_PERC: 'Процент на комисия',
     INS_PROD_DEFERED: 'Разсрочено плащане',
     INS_PROD_PREM_PERC: 'Процент на премия',
-    INS_TYPE_ID: 'Тип',
+    INS_TYPE_ID: 'Вид застраховка',
     MODIF_DATE: 'Дата на промяна'
 }
 export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
