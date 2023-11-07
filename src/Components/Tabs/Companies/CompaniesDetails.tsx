@@ -46,7 +46,7 @@ export function CompaniesDetails() {
                             Застрахователни продукти:
                         </div>
                         <div className="max-h-[250px] w-[350px] overflow-y-scroll overflow-x-hidden">
-                            <DataTable data={tableData ?? []} headers={headers} tableName="" hideAction={false} />
+                            <DataTable data={tableData ?? []} headers={headers} tableName="" hideAction={true} addURL="../../products/add" />
                         </div>
                         
                     </div>

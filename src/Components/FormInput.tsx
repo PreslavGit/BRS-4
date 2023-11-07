@@ -88,7 +88,7 @@ export function FormInput({ name, label, form, setForm, type = 'text', placehold
         <>
             {
             type === 'checkbox' ?
-                <Checkbox sx={{ display: 'flex', alignItems: 'center', marginY: '10px'}} label={label} slotProps={{ input: { onChange: () => setForm({ ...form, [name]: !form[name] }) }}} />: 
+                <Checkbox sx={{ display: 'flex', alignItems: 'center', marginY: '10px', width: '200px'}} label={label} slotProps={{ input: { onChange: () => setForm({ ...form, [name]: !form[name] }) }}} />: 
             type === 'autocomplete' ?
                 <FormAutocomplete name={name} state={form} setState={setForm} fetcher={fetcher!} displayProp={displayProp ?? ''} label={label}/> :
              

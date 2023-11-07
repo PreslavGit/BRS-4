@@ -16,9 +16,11 @@ type props<T> = {
     tableName: string
     url?: string,
     hideAction?: boolean
+    addURL?: string
 }
 
-export function DataTable<T>({ headers, data, tableName, url, hideAction = false }: props<T>) {
+
+export function DataTable<T>({ headers, data, tableName, url, hideAction, addURL: addLink = 'add' }: props<T>) {
     const n = useNavigate()
 
     const [openDelModal, setOpenDelModal] = useState(false);
@@ -26,9 +28,9 @@ export function DataTable<T>({ headers, data, tableName, url, hideAction = false
 
     return (
         <div className="w-full h-[60vh] mr-[10vw] max-w-[60vw]">
-            <div className={`w-full h-[7vh] pr-2 mb-[1vh] flex flex-row justify-between ${hideAction ? 'hidden' : ''}`} key={'actionHeader'}>
+            <div className={`w-full h-[7vh] pr-2 mb-[1vh] flex flex-row justify-between`} key={'actionHeader'}>
                 <Typography level='h2'>{tableName}</Typography>
-                <Button size="sm" variant="outlined" onClick={() => n('add')}>Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>
+                <Button size="sm" variant="outlined" onClick={() => n(addLink)}>Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>
             </div>
             <Sheet sx={{ height: '52vh', overflow: 'auto', borderRadius: 'sm' }}>
                 <Table variant="outlined" hoverRow stickyHeader stripe={'odd'}>

@@ -5,6 +5,7 @@ import { Company } from "./Companies"
 import { GET, POST, PUT } from "../../../FetchWrapper"
 import { useParams } from "react-router-dom"
 import { getCompanyById } from "../../../APIService"
+import { ConfirmModal } from "../../ConfirmModal"
 
 const labels: Record<keyof Company, string> = {
     INS_COMPANY_ID: 'ID',
@@ -20,6 +21,7 @@ export function ManageCompany({ type }: { type: 'Add' | 'Edit'}) {
 
     const [form, setForm] = useState(new Company())
     const params = useParams()
+    const [openConfirmModal, setConfirmModal] = useState(false);
 
     useEffect(() => {
         if(type === 'Edit' && params.id){
@@ -49,8 +51,10 @@ export function ManageCompany({ type }: { type: 'Add' | 'Edit'}) {
                 })}
             </Stack>
             <div className="w-full flex justify-center items-center mt-4">
-                <Button onClick={handleSubmit}>{actionLabel}</Button>
+                <Button onClick={() => setConfirmModal(true)}>{actionLabel}</Button>
             </div>
+            <ConfirmModal state={openConfirmModal} setState={setConfirmModal} type="Info"
+                action={() => handleSubmit() as any} /> 
         </div>
     )
 }

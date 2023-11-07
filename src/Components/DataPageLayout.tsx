@@ -9,9 +9,11 @@ type props<T> = {
     url: string
     headers: TableHeader<T>
     tableName: string
+    hideActions?: boolean
+    addURL?: string
 }
 
-export function DataPageLayout<T>({ formInputs, url, headers, tableName }: props<T>){
+export function DataPageLayout<T>({ formInputs, url, headers, tableName, hideActions = false, addURL }: props<T>){
     const [tableData, setTableData] = useState<T[]>()
     useEffect(() => {
         GET<T[]>(url)
@@ -20,7 +22,7 @@ export function DataPageLayout<T>({ formInputs, url, headers, tableName }: props
     return (
         <div className="flex flex-col sm:flex-row gap-12 sm:ml-12 mt-16">
             <TableFilter formInputs={formInputs} url={url} setData={setTableData}/>
-            <DataTable headers={headers} data={tableData ?? []} tableName={tableName} url={url} />
+            <DataTable headers={headers} data={tableData ?? []} tableName={tableName} url={url} addURL={addURL}/>
         </div>
     )
 }

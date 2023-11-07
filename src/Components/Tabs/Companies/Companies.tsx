@@ -2,14 +2,14 @@ import { DataPageLayout } from "../../DataPageLayout";
 import { FormProps } from "../../FormInput";
 import { Company } from "./Companies";
 import { TableHeader } from "../../DataTable";
-import { getCompanies } from "../../../APIService";
+import { getInsurances } from "../../../APIService";
 
 export function Companies() {
     const filterInputs: FormProps[] = [
         { name: 'name', label: 'Име' },
         { name: 'id', label: 'ID' },
         { name: 'bulstat', label: 'БУЛСТАТ' },
-        { name: 'insuranceType', label: 'Вид застаховка', type: 'autocomplete', fetcher: getCompanies},
+        { name: 'insuranceType', label: 'Вид застаховка', type: 'autocomplete', fetcher: getInsurances, displayProp: 'INS_TYPE_NAME'},
     ]
 
     const headers: TableHeader<Company> = { 
@@ -20,7 +20,7 @@ export function Companies() {
     }        
 
     return (
-        <DataPageLayout<Company>  formInputs={filterInputs} url="/brokers/broker.php"
+        <DataPageLayout<Company>  formInputs={filterInputs} url="/brokers/broker.php" hideActions={true}
             headers={headers} tableName="Компании"/>
     )
 }
