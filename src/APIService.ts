@@ -30,6 +30,10 @@ export async function getCompanyProduct(id: number){
     return await GET<Product[]>('/products/product.php?filtered=true&id=' + id, undefined, '/products')
 }
 
+export async function getPolicies() {
+   return []
+}
+
 export async function getClients(){
     const clients: Client[] = [
         { CLIENT_ID: 1, CLIENT_FULLNAME: 'Клиент Едно' },

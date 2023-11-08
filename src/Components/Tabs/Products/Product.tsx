@@ -2,7 +2,7 @@ import { Product } from './Product'
 import { DataPageLayout } from "../../DataPageLayout";
 import { FormProps } from "../../FormInput";
 import { TableHeader } from "../../DataTable";
-import { getCompanies, getInsurances } from '../../../APIService';
+import { getCompanies, getInsurances, getProducts } from '../../../APIService';
 
 export function Products(){
     const filterInputs: FormProps[] = [
@@ -16,12 +16,12 @@ export function Products(){
     ]
 
     const headers: TableHeader<Product> = { 
-        INS_COMPANY_ID: 'Номер', 
-        INS_PROD_NAME: 'Име',
+        INS_COMPANY_ID: 'Компания', 
+        INS_PROD_NAME: 'Продукт',
     }        
 
     return (
-        <DataPageLayout<Product>  formInputs={filterInputs} url="/products/products.php"
+        <DataPageLayout<Product>  formInputs={filterInputs} fetcher={getProducts} url="/products/products.php"
             headers={headers} tableName="Продукти"/>
     )
 }

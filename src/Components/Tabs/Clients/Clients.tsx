@@ -1,3 +1,4 @@
+import { getClients } from "../../../APIService"
 import { DataPageLayout } from "../../DataPageLayout"
 import { TableHeader } from "../../DataTable"
 import { FormProps } from "../../FormInput"
@@ -22,7 +23,7 @@ export function Clients(){
     }        
 
     return (
-        <DataPageLayout<Client>  formInputs={filterInputs} url="/clients/client.php"
+        <DataPageLayout<Client>  formInputs={filterInputs} fetcher={getClients} url="/clients/client.php"
             headers={headers} tableName="Клиенти"/>
     )
 }

@@ -2,7 +2,7 @@ import { DataPageLayout } from "../../DataPageLayout";
 import { FormProps } from "../../FormInput";
 import { Company } from "./Companies";
 import { TableHeader } from "../../DataTable";
-import { getInsurances } from "../../../APIService";
+import { getCompanies, getInsurances } from "../../../APIService";
 
 export function Companies() {
     const filterInputs: FormProps[] = [
@@ -20,7 +20,7 @@ export function Companies() {
     }        
 
     return (
-        <DataPageLayout<Company>  formInputs={filterInputs} url="/brokers/broker.php" hideActions={true}
+        <DataPageLayout<Company>  formInputs={filterInputs} url="/brokers/broker.php" fetcher={getCompanies} hideActions={true}
             headers={headers} tableName="Компании"/>
     )
 }

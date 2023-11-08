@@ -1,4 +1,4 @@
-import { getClients, getProducts } from "../../../APIService"
+import { getClients, getPolicies, getProducts } from "../../../APIService"
 import { DataPageLayout } from "../../DataPageLayout"
 import { TableHeader } from "../../DataTable"
 import { FormProps } from "../../FormInput"
@@ -20,7 +20,7 @@ export function Policies(){
     }        
 
     return (
-        <DataPageLayout<Policy>  formInputs={filterInputs} url="/policies/policies.php"
+        <DataPageLayout<Policy>  formInputs={filterInputs} fetcher={getPolicies} url="/policies/policies.php"
             headers={headers} tableName="Полици"/>
     )
 }

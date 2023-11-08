@@ -8,10 +8,11 @@ import { useState } from "react"
 type props = {
     formInputs: FormProps[]
     url: string
+    fetcher: () => Promise<any>
     setData: React.Dispatch<any>
 }
 
-export function TableFilter({ formInputs, url, setData }: props) {
+export function TableFilter({ formInputs, url, fetcher, setData }: props) {
     const formInit = inputsToForm(formInputs)
     const [form, setForm] = useState(formInit)
 
@@ -21,7 +22,7 @@ export function TableFilter({ formInputs, url, setData }: props) {
             cleared[input] = ''
         }
         setForm(cleared)
-        setData(await GET(url))
+        setData(await fetcher())
     }
 
     async function getFiltered() {
