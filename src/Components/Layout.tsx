@@ -1,8 +1,9 @@
-import { Diversity3, Logout, Menu, ProductionQuantityLimits, ProductionQuantityLimitsTwoTone, ShoppingCart, SupervisorAccount, TextSnippet } from "@mui/icons-material";
-import { IconButton, List, ListItemButton, ModalClose, Typography } from "@mui/joy";
+import { Diversity3, Logout, Menu, ShoppingCart, SupervisorAccount, TextSnippet } from "@mui/icons-material";
+import { IconButton, List, ListItemButton, ModalClose } from "@mui/joy";
 import Drawer from "@mui/joy/Drawer/Drawer";
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import HomeIcon from '@mui/icons-material/Home';
 
 export function Layout() {
     function isHomePage(){
@@ -25,6 +26,11 @@ export function Layout() {
                         <NavLink to={`companies`}>
                             <ListItemButton sx={{ display: 'flex', justifyContent: 'left' }}>
                                 Компании <Diversity3 sx={{marginLeft: '8px'}}/>
+                            </ListItemButton>
+                        </NavLink>
+                        <NavLink to={`types`}>
+                            <ListItemButton sx={{ display: 'flex', justifyContent: 'left' }}>
+                                Застахователни обекти <HomeIcon sx={{marginLeft: '8px'}}/>
                             </ListItemButton>
                         </NavLink>
                         <NavLink to={`products`}>

@@ -3,7 +3,8 @@ import { Company } from "./Components/Tabs/Companies/Companies";
 import { Product } from "./Components/Tabs/Products/Product";
 import { InsType } from "./Components/Tabs/InsType/InsType";
 import { Client } from "./Components/Tabs/Clients/Clients";
-import { ObjectType } from "./Components/Tabs/ObjectType/ObjectType";
+import { Type } from "./Components/Tabs/ObjectType/ObjectType";
+
 
 export async function getCompanies(){
     return await GET<Company[]>('/brokers/broker.php', undefined, '/companies')
@@ -53,9 +54,11 @@ export async function getProducts(){
 }
 
 export async function getObjectTypes(){
-    const objs: ObjectType[] = [
+    const objs: Type[] = [
+
         { INS_OBJECT_TYPE_ID: 1, INS_OBJECT_TYPE_NAME: 'Имот' },
         { INS_OBJECT_TYPE_ID: 2, INS_OBJECT_TYPE_NAME: 'Живот' },
+        { INS_OBJECT_TYPE_ID: 3, INS_OBJECT_TYPE_NAME: 'Превозно средство' }
     ]
     return objs
 }

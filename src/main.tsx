@@ -15,6 +15,7 @@ import { ManageProduct } from './Components/Tabs/Products/ManageProduct.tsx';
 import { ManagePolicy } from './Components/Tabs/Policies/ManagePolicy.tsx';
 import { CompaniesDetails } from './Components/Tabs/Companies/CompaniesDetails.tsx';
 import { ProductsDetails } from './Components/Tabs/Products/ProductsDetails.tsx';
+import { ObjectType } from './Components/Tabs/ObjectType/ObjectType.tsx'
 
 
 export function App() {
@@ -32,6 +33,8 @@ export function App() {
 					<Route path='companies/add' element={<ManageCompany type='Add' />} />
 					<Route path='companies/edit/:id' element={<ManageCompany type='Edit' />} />
 					<Route path='companies/details/:id' element={<CompaniesDetails/>} />
+
+					<Route path='types' element={<ObjectType />} />
 
 					<Route path='products' element={<Products />} />
 					<Route path='products/add' element={<ManageProduct type='Add' />} />

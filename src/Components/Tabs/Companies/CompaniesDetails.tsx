@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react";
-import { GET } from "../../../FetchWrapper";
-import { DataPageLayout } from "../../DataPageLayout";
 import { DataTable, TableHeader } from "../../DataTable";
 import { Product } from "../Products/Product"
 import { Company } from "./Companies"
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { getCompanyProduct } from "../../../APIService";
+
 
 export function CompaniesDetails() {
     const c = new Company()
