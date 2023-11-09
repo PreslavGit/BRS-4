@@ -30,7 +30,7 @@ export function TableFilter({ formInputs, url, fetcher, setData }: props) {
     }
 
     return (
-        <Card sx={{ width: '280px', height: '60vh', padding: '10px', margin: 'auto' }} color="primary">
+        <Card sx={{ width: '280px', height: '60vh', padding: '10px', margin: 'auto', boxShadow: '0 25px 50px -12px rgb(0 0 0 / 0.25)' }} color="primary">
             <Typography level="h4" textAlign='center'>Филтри</Typography>
             <Divider />
             <div className="overflow-y-scroll h-full flex flex-col">
@@ -40,7 +40,8 @@ export function TableFilter({ formInputs, url, fetcher, setData }: props) {
                     })}
                 </Stack>
             </div>
-            <div className="flex justify-center gap-2 mb-4">
+            <Divider />
+            <div className="flex justify-center gap-2 my-4">
                 <Button variant="outlined" color="neutral" onClick={clearForm}>Изчисти</Button>
                 <Button variant="solid" color="primary" onClick={getFiltered}>Филтрирай<Search sx={{ marginLeft: '6px' }} /></Button>
             </div>
