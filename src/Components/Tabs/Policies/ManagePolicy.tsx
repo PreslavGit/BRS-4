@@ -55,6 +55,8 @@ export function ManagePolicy({ type }: { type: 'Add' | 'Edit'}) {
                 return 'autocomplete'
             case 'POLICY_ACTIVE':
                 return 'checkbox'
+            case 'POLICY_DATE':
+                return 'date'
             case 'POLICY_BEGIN_DATE':
                 return 'date'
             case 'POLICY_END_DATE':
