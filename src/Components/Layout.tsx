@@ -13,7 +13,7 @@ export function Layout() {
     const [drawerOpen, setDrawerOpen] = useState(false)
 
     return (
-        <>
+        <div className="h-screen bg-gradient-to-br from-sky-50 to-sky-100">
             <IconButton variant="outlined" color="primary" onClick={() => setDrawerOpen(true)} sx={{ margin: '10px' }}>
                 <Menu />
             </IconButton>
@@ -49,9 +49,11 @@ export function Layout() {
                             </ListItemButton>
                         </NavLink>
                     </List>
-                    <IconButton variant="plain" color="danger" onClick={() => setDrawerOpen(true)} sx={{ margin: '10px' }}>
-                        <NavLink to={`login`} onClick={() => localStorage.removeItem('logged')} className={'mr-4'}>Излизане</NavLink>
-                        <Logout />
+                    <IconButton variant="plain" color="danger" onClick={() => localStorage.removeItem('logged')} sx={{ margin: '10px' }}>
+                        <NavLink to={`login`} className={'mr-4 w-full'}>
+                            Излизане
+                            <Logout sx={{marginLeft: '10px'}}/>
+                        </NavLink>
                     </IconButton>
                 </div>
             </Drawer>
@@ -64,6 +66,6 @@ export function Layout() {
             } 
 
             <Outlet />
-        </>
+        </div>
     )
 }

@@ -53,8 +53,8 @@ export function ManageClient({ type }: { type: 'Add' | 'Edit'}) {
     }
 
     return (
-        <div className="sm:w-[600px] w-[300px] p-4 rounded-xl border-blue-300 border-[1px] m-auto mt-12">
-            <Typography level="h3" sx={{ marginBottom: '10px' }}>{caption}</Typography>
+        <div className="sm:w-[600px] w-[300px] p-4 rounded-xl border-blue-300 border-[1px] m-auto mt-12 bg-gradient-to-tl from-sky-50 to-sky-100 shadow-xl">
+            <Typography level="h2" sx={{ margin: '10px', marginBottom: '20px' }}>{caption}</Typography>
             <Stack spacing={2} direction="row" flexWrap="wrap" useFlexGap justifyContent={'center'}>
                 {(Object.keys(labels) as (keyof Client)[]).map((i, ind) => {
                     if(ind === 0 && type === "Add") return null

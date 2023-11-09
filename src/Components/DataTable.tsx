@@ -28,18 +28,18 @@ export function DataTable<T>({ headers, data, tableName, url, hideAction, addURL
 
     return (
         <div className="w-full h-[60vh] mr-[10vw] max-w-[60vw]">
-            <div className={`w-full h-[7vh] pr-2 mb-[1vh] flex flex-row justify-between`} key={'actionHeader'}>
+            <div className={`w-full h-[7vh] pr-2 mb-[0.5vh] flex flex-row justify-between items-center`} key={'actionHeader'}>
                 <Typography level='h2'>{tableName}</Typography>
-                <Button size="sm" variant="outlined" onClick={() => n(addLink)}>Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>
+                <Button size="lg" variant="solid" onClick={() => n(addLink)} sx={{paddingX: '-5px'}}>Добавяне <Add sx={{ marginLeft: '5px', }} /></Button>
             </div>
-            <Sheet sx={{ height: '52vh', overflow: 'auto', borderRadius: 'sm' }}>
+            <Sheet sx={{ height: '52vh', overflow: 'auto', borderRadius: 'sm', boxShadow: '0 25px 50px -12px rgb(0 0 0 / 0.25)', border: 'solid 1px rgb(156 163 175)' }}>
                 <Table variant="outlined" hoverRow stickyHeader stripe={'odd'}>
                     <thead>
                         <tr className="h-[30px]">
-                            <th className={`w-[50px] ${hideAction ? 'hidden' : ''}`} key={'actionHeader'}></th>
+                            <td className={`w-[50px] border-0 ${hideAction ? 'hidden' : ''}`} key={'actionHeader'}></td>
                             {Object.keys(headers).map(h => {
                                 const key = h as keyof T;
-                                return <th key={headers[key]} className="w-[150px]">{headers[key]}</th>
+                                return <td key={headers[key]} className="w-[150px] rounded">{headers[key]}</td>
                             })}
                         </tr>
                     </thead>
