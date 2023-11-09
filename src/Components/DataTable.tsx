@@ -1,4 +1,4 @@
-import { Add, Delete, Edit, MoreHoriz, Visibility } from "@mui/icons-material";
+import { Add, Business, Check, Close, Delete, Edit, MoreHoriz, Person, Visibility } from "@mui/icons-material";
 import { Button, Dropdown, ListItemDecorator, Menu, MenuButton, MenuItem, Sheet, Table, Typography } from "@mui/joy";
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
@@ -75,6 +75,8 @@ export function DataTable<T>({ headers, data, tableName, url, hideAction, addURL
                                     </td>
                                     {Object.keys(headers).map(h => {
                                         const key = h as keyof T;
+                                        if(typeof d[key] === 'boolean' && key === 'CLIENT_TYPE') return <td key={`cell-${i}-${key as string}`}>{ d[key] ? <Person color="primary"/> : <Business color="primary"/>}</td>
+                                        if(typeof d[key] === 'boolean') return <td key={`cell-${i}-${key as string}`}>{ d[key] ? <Check color="success"/> : <Close color="error"/>}</td>
                                         return <td key={`cell-${i}-${key as string}`}>{(d[key] as any) ? (d[key] as any) : '-----'}</td>
                                     })}
                                 </tr>

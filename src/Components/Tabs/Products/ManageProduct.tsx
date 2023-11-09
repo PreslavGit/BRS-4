@@ -46,6 +46,9 @@ export function ManageProduct({ type }: { type: 'Add' | 'Edit'}) {
         if(i === 'INS_PROD_DEFERED'){
             return 'checkbox'
         }
+        if(i === 'MODIF_DATE'){
+            return 'date'
+        }
         if(i === 'INS_COMPANY_ID'){
             return 'autocomplete'
         }
