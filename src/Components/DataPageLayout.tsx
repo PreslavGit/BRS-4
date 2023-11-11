@@ -22,7 +22,7 @@ export function DataPageLayout<T>({ formInputs, fetcher, url, headers, tableName
     return (
         <div className="flex flex-col sm:flex-row gap-12 sm:ml-12 mt-16">
             <TableFilter formInputs={formInputs} url={url} fetcher={fetcher} setData={setTableData}/>
-            <DataTable headers={headers} data={tableData ?? []} tableName={tableName} url={url} addURL={addURL}/>
+            <DataTable headers={headers} data={tableData ?? []} setData={setTableData} tableName={tableName} url={url} addURL={addURL} fetcher={fetcher}/>
         </div>
     )
 }

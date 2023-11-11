@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { FormInput } from "../../FormInput"
 import { Company } from "./Companies"
 import { GET, POST, PUT } from "../../../FetchWrapper"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { getCompanyById } from "../../../APIService"
 import { ConfirmModal } from "../../ConfirmModal"
 
@@ -19,6 +19,7 @@ export function ManageCompany({ type }: { type: 'Add' | 'Edit'}) {
     let actionLabel = type === 'Edit' ? 'Редактиране' : 'Добавяне'
     let caption = actionLabel +  ' на компания'
 
+    const n = useNavigate()
     const [form, setForm] = useState(new Company())
     const params = useParams()
     const [openConfirmModal, setConfirmModal] = useState(false);
@@ -31,11 +32,10 @@ export function ManageCompany({ type }: { type: 'Add' | 'Edit'}) {
     }, [])
 
     function handleSubmit(){
-        console.log(form);
         if(type === 'Add'){
-            POST('/brokers/broker.php', form)
+            POST('/brokers/broker.php', form, () => n('/companies'))
         } else {
-            PUT(`/brokers/broker.php`, form)
+            PUT(`/brokers/broker.php`, form, () => n('/companies'))
         }
     }
 
