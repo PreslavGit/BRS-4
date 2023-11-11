@@ -13,14 +13,16 @@ export type TableHeader<T> = {
 type props<T> = {
     headers: TableHeader<T>
     data: T[]
+    setData?: (data: any) => any
     tableName: string
     url?: string,
     hideAction?: boolean
     addURL?: string
+    fetcher: () => Promise<any>
 }
 
 
-export function DataTable<T>({ headers, data, tableName, url, hideAction, addURL: addLink = 'add' }: props<T>) {
+export function DataTable<T>({ headers, fetcher, data, setData, tableName, url, hideAction, addURL: addLink = 'add' }: props<T>) {
     const n = useNavigate()
 
     const [openDelModal, setOpenDelModal] = useState(false);
@@ -91,7 +93,7 @@ export function DataTable<T>({ headers, data, tableName, url, hideAction, addURL
             
 
             <ConfirmModal state={openDelModal} setState={setOpenDelModal} type="Warning"
-                action={() => DELETE(url + '?id=' +  getId(selectedItem))} /> 
+                action={() => DELETE(url + '?id=' +  getId(selectedItem), () => fetcher().then(resp => { if(resp && setData) setData(resp) }))} /> 
 
             <Outlet />
         </div>

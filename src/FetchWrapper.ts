@@ -23,7 +23,7 @@ export async function GET<T>(url: string, redir?: () => void, fePath?: string) {
         .catch(e => handleError(e))
 }
 
-export async function POST<T>(url: string, data: any, redir?: () => void) {
+export async function POST<T>(url: string, data: any, redir?: any) {
     return fetch(API_URL + url, {
         method: 'POST',
         body: JSON.stringify(data),
@@ -44,7 +44,7 @@ export async function POST<T>(url: string, data: any, redir?: () => void) {
         .catch(e => handleError(e))
 }
 
-export async function PUT<T>(url: string, data: any, redir?: () => void) {
+export async function PUT<T>(url: string, data: any, redir?: any) {
     return fetch(API_URL + url, {
         method: 'PUT',
         body: JSON.stringify(data),
@@ -65,7 +65,7 @@ export async function PUT<T>(url: string, data: any, redir?: () => void) {
         .catch(e => handleError(e))
 }
 
-export async function DELETE(url: string, redir?: () => void) {
+export async function DELETE(url: string, redir?: any) {
     return fetch(API_URL + url, {
         method: 'DELETE',
         headers: {'X-FRONTEND-URL': window.location.href }
