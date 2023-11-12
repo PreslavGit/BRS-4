@@ -21,6 +21,10 @@ export async function getInsurances(){
         { 
             INS_TYPE_ID: 2,
             INS_TYPE_NAME: "Здравна",
+        },
+        { 
+            INS_TYPE_ID: 3,
+            INS_TYPE_NAME: "Живот",
         }
     ]
     return type
