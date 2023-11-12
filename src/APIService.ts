@@ -57,7 +57,7 @@ export async function getClients(){
 
 export async function getProducts(){
     const prods: Product[] = [
-        { INS_PROD_CODE: 1, INS_COMPANY_ID: 234098, INS_PROD_NAME: 'Продукт Едно' },
+        { INS_PROD_CODE: 1, INS_COMPANY_ID: 234098, INS_PROD_NAME: 'Продукт Едно'},
         { INS_PROD_CODE: 2, INS_COMPANY_ID: 975498, INS_PROD_NAME: 'Продукт Две' },
         { INS_PROD_CODE: 3, INS_COMPANY_ID: 102389, INS_PROD_NAME: 'Продукт Три' },
     ] as Product[]
