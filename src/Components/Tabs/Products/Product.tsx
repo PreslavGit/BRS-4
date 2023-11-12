@@ -6,7 +6,7 @@ import { getCompanies, getInsurances, getProducts } from '../../../APIService';
 
 export function Products(){
     const filterInputs: FormProps[] = [
-        { name: 'code', label: 'Код' },
+        //{ name: 'code', label: 'Код' },
         { name: 'name', label: 'Име' },
         { name: 'type', label: 'Вид застраховка',type: 'autocomplete', fetcher: getInsurances, displayProp: 'INS_TYPE_NAME' },
         { name: 'allowsCredit', label: 'Разсрочено палащане', type: 'checkbox' },
