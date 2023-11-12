@@ -77,7 +77,7 @@ export function DataTable<T>({ headers, fetcher, data, setData, tableName, url, 
                                     </td>
                                     {Object.keys(headers).map(h => {
                                         const key = h as keyof T;
-                                        if(typeof d[key] === 'boolean' && key === 'CLIENT_TYPE') return <td key={`cell-${i}-${key as string}`}>{ d[key] ? <Person color="primary"/> : <Business color="primary"/>}</td>
+                                        if(key === 'CLIENT_TYPE') return <td key={`cell-${i}-${key as string}`}>{ Number(d[key]) ? <Person color="primary"/> : <Business color="primary"/>}</td>
                                         if(typeof d[key] === 'boolean') return <td key={`cell-${i}-${key as string}`}>{ d[key] ? <Check color="success"/> : <Close color="error"/>}</td>
                                         return <td key={`cell-${i}-${key as string}`}>{(d[key] as any) ? (d[key] as any) : '-----'}</td>
                                     })}

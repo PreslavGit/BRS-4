@@ -48,11 +48,12 @@ export async function getPolicies() {
 
 export async function getClients(){
     const clients: Client[] = [
-        { CLIENT_ID: 1, CLIENT_FULLNAME: 'Клиент Едно', CLIENT_TYPE: true, EMAIL: 'client@mail.bg', TELEPHONE: '088234817' },
-        { CLIENT_ID: 2, CLIENT_FULLNAME: 'Клиент Две', CLIENT_TYPE: false, EMAIL: 'client_two@mail.com', TELEPHONE: '03249123'},
-        { CLIENT_ID: 3, CLIENT_FULLNAME: 'Клиент Три', CLIENT_TYPE: true, EMAIL: 'client3@mail.uk', TELEPHONE: '01239238'},
+        { CLIENT_ID: 1, CLIENT_FULLNAME: 'Клиент Едно', CLIENT_TYPE: 0, EMAIL: 'client@mail.bg', TELEPHONE: '088234817' },
+        { CLIENT_ID: 2, CLIENT_FULLNAME: 'Клиент Две', CLIENT_TYPE: 1, EMAIL: 'client_two@mail.com', TELEPHONE: '03249123'},
+        { CLIENT_ID: 3, CLIENT_FULLNAME: 'Клиент Три', CLIENT_TYPE: 0, EMAIL: 'client3@mail.uk', TELEPHONE: '01239238'},
     ] as Client[]
-    return clients
+    // return clients
+    return await GET<Client[]>('/clients/client.php', undefined, '/clients')
 }
 
 export async function getProducts(){

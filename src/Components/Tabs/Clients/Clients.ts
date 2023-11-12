@@ -11,7 +11,7 @@ export class ClientFilter {
 
 export class Client {
     CLIENT_ID!: number
-    CLIENT_TYPE!: boolean
+    CLIENT_TYPE!: number
     CLIENT_EGN_BULSTAT!: string
     CLIENT_FULLNAME!: string
     EMAIL?: string

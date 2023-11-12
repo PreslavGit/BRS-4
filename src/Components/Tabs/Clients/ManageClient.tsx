@@ -2,7 +2,7 @@ import { Typography, Stack, Button } from "@mui/joy"
 import { useEffect, useState } from "react"
 import { FormInput, inputType } from "../../FormInput"
 import { GET, POST, PUT } from "../../../FetchWrapper"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { Client } from "./Clients"
 import { ConfirmModal } from "../../ConfirmModal"
 
@@ -25,6 +25,7 @@ export function ManageClient({ type }: { type: 'Add' | 'Edit'}) {
     const [form, setForm] = useState(new Client())
     const params = useParams()
     const [openConfirmModal, setConfirmModal] = useState(false);
+    const n = useNavigate()
 
     useEffect(() => {
         if(type === 'Edit'){
@@ -34,12 +35,11 @@ export function ManageClient({ type }: { type: 'Add' | 'Edit'}) {
     }, [])
 
     function handleSubmit(){
-        console.log(form);
         form.CLIENT_TYPE = (form.CLIENT_TYPE ? 1 : 0) as any
         if(type === 'Add'){
-            POST('/clients/client.php', form)
+            POST('/clients/client.php', form, () => n('/clients') )
         } else {
-            PUT(`/clients/client.php`, form)
+            PUT(`/clients/client.php`, form,  () => n('/clients') )
         }
     }
 
